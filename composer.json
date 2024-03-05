@@ -1,0 +1,70 @@
+{
+    "name": "leantime/dataexport",
+    "description": "",
+    "version": "1.0",
+    "authors": [
+        {
+            "name": "Jeppe Krogh",
+            "email": "kjej@aarhus.dk"
+        },
+        {
+            "name": "Mikkel Ricky",
+            "email": "rimi@aarhus.dk"
+        }
+    ],
+    "type": "leantime-plugin",
+    "license": "MIT",
+    "homepage": "https://github.com/itk-leantime/leantime-dataexport",
+    "require": {
+        "leantime/leantime": "^3.0",
+        "psr/log": "^1.1"
+    },
+    "require-dev": {
+        "squizlabs/php_codesniffer": "^3.9",
+        "friendsofphp/php-cs-fixer": "^3.51",
+        "phpcsstandards/phpcsextra": "^1.2",
+        "zebra-north/phpcs-short-types": "^1.0",
+        "phpstan/phpstan": "^1.10",
+        "phpunit/phpunit": "^10.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "Leantime\\Plugins\\Fixtures\\": ["./", "tests/"]
+        }
+    },
+    "config": {
+        "allow-plugins": {
+            "metasyntactical/composer-plugin-license-check": true,
+            "dealerdirect/phpcodesniffer-composer-installer": true
+        }
+    },
+    "scripts": {
+        "coding-standards-check/phpcs": [
+            "phpcs --ignore='*/vendor/*' ."
+        ],
+        "coding-standards-check": [
+            "@coding-standards-check/phpcs"
+        ],
+        "coding-standards-apply/phpcbf": [
+            "phpcbf --ignore='*/vendor/*' ."
+        ],
+        "coding-standards-apply": [
+            "@coding-standards-apply/phpcbf"
+        ],
+        "code-analysis/phpstan": [
+            "phpstan analyse"
+        ],
+        "code-analysis": [
+            "@code-analysis/phpstan"
+        ],
+        "test": [
+            "phpunit tests/"
+        ]
+    },
+    "repositories": {
+        "leantime/leantime": {
+            "type": "vcs",
+            "url": "https://github.com/Leantime/leantime"
+        }
+    }
+}
