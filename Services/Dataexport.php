@@ -14,6 +14,7 @@ class Dataexport
      */
     public function install(): void
     {
+        // @TODO Find a (good) way to get the Leantime application root.
         symlink(
             __DIR__ . '/../assets/Dataexport.js',
             __DIR__ . '/../../../../public/dist/js/plugin-Dataexport.js'

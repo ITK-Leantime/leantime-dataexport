@@ -2,14 +2,16 @@
 
 namespace Leantime\Plugins\Dataexport\Controllers;
 
+use Illuminate\Http\Exceptions\HttpResponseException;
 use Leantime\Core\Controller;
+use Leantime\Core\Frontcontroller;
 use Leantime\Core\IncomingRequest;
 use Leantime\Core\Language;
 use Leantime\Core\Template;
 use Leantime\Domain\Auth\Models\Roles;
 use Leantime\Domain\Auth\Services\Auth;
+use Leantime\Plugins\Dataexport\Services\AbstractExporter;
 use Leantime\Plugins\Dataexport\Services\TimesheetsExporter;
-use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Timesheets controller.
@@ -47,16 +49,10 @@ final class Timesheets extends Controller
         // Cf. \Leantime\Domain\Timesheets\Controllers\ShowAll::run();
         Auth::authOrRedirect([Roles::$owner, Roles::$admin, Roles::$manager], true);
 
-        $id = $params['id'];
-
-        // Remove some Leantime keys.
-        $criteria = array_filter(
-            $params,
-            static fn (string $key) => !in_array($key, ['id', 'act', 'request_parts'], true),
-            ARRAY_FILTER_USE_KEY
-        );
-        $format = $criteria['format'] ?? 'csv';
-        unset($criteria['format']);
+        [$context, $query] = $this->getContext($params);
+        $id = $context['id'] ?? null;
+        $format = $query['format'] ?? AbstractExporter::FORMAT_CSV;
+        unset($query['format']);
 
         if ('all' === $id) {
             $filename = 'leantime_timesheets';
@@ -66,17 +62,36 @@ final class Timesheets extends Controller
             if ($date = $this->timesheetsExporter->getDateTime($criteria['dateTo'] ?? null)) {
                 $filename .= '_' . $date->format(\DateTimeInterface::ATOM);
             }
-            if ('excel' === $format) {
-                $filename .= '.excel';
-            }
-            $filename .= '.csv';
+            $filename .= '.' . $format;
             $this->timesheetsExporter->export(
-                $params,
+                $query,
                 options: [
-                'filename' => $filename,
-                'format' => $format,
+                    'filename' => $filename,
+                    'format' => $format,
                 ]
             );
         }
+
+        throw new HttpResponseException(Frontcontroller::redirect(BASE_URL . '/errors/error404'));
+    }
+
+    /**
+     * Get context from query string parameters.
+     *
+     * @return array
+     *   id: id
+     *   format: format
+     *   query: the rest of the parameters
+     */
+    private function getContext(array $params): array
+    {
+        $leantime = array_filter(
+            $params,
+            static fn (mixed $key) => in_array($key, ['id', 'act', 'request_parts'], true),
+            ARRAY_FILTER_USE_KEY
+        );
+        $query  = array_diff_key($params, $leantime);
+
+        return [$leantime, $query];
     }
 }

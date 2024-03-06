@@ -11,15 +11,16 @@ addEventListener('DOMContentLoaded', () => {
         return button
     }
     const buttons = [
-        createButton(leantime.i18n.__('Export CSV') ?? 'Export CSV', 'csv'),
-        createButton(leantime.i18n.__('Export Excel') ?? 'Export Excel', 'excel')
+        createButton(leantime.i18n.__('Export (csv)') ?? 'Export (csv)', 'csv'),
+        createButton(leantime.i18n.__('Export (xlsx)') ?? 'Export (xlsx)', 'xlsx')
     ]
 
     // We want to add our buttons inside .dt-buttons inside #tableButtons, but that element may not exist yet.
     const wrapper = document.getElementById('tableButtons')
     if (wrapper) {
         const addButtons = (container) => {
-            for (const button of buttons) {
+            // Buttons are prepended to the container, so we process them in reverse order.
+            for (const button of buttons.reverse()) {
                 // Add a little spacing.
                 container.prepend(document.createTextNode(' '))
                 container.prepend(button)

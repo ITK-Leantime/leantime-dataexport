@@ -2,15 +2,23 @@
 
 namespace Leantime\Plugins\Dataexport\Services;
 
-use League\Csv\Writer;
+require_once __DIR__ . '/../vendor-plugin/autoload.php';
+
 use Leantime\Domain\Auth\Services\Auth;
 use Leantime\Domain\Setting\Services\Setting;
+use OpenSpout\Common\Entity\Row;
+use OpenSpout\Writer\AbstractWriter;
+use OpenSpout\Writer\CSV\Writer as CSVWriter;
+use OpenSpout\Writer\XLSX\Writer as XLSXWriter;
 
 /**
  * Abstract exporter.
  */
 abstract class AbstractExporter
 {
+    const FORMAT_CSV = 'csv';
+    const FORMAT_XLSX = 'xlsx';
+
     /**
      * Constructor.
      */
@@ -31,7 +39,7 @@ abstract class AbstractExporter
      *
      * @return void
      */
-    public function export(array $criteria = [], string $format = 'csv', array $options = []): void
+    public function export(array $criteria = [], array $options = []): void
     {
         $data = $this->generateData($criteria);
 
@@ -41,28 +49,14 @@ abstract class AbstractExporter
             $data
         );
 
-        $csv = Writer::createFromString();
-
-        $format = $options['format'] ?? 'csv';
-        if ('excel' === $format) {
-            $handle = fopen('php://output', 'w');
-            fputs($handle, "sep=," . PHP_EOL);
-            fclose($handle);
-            // @see https://csv.thephpleague.com/8.0/bom/#ms-excel-on-windows
-            $csv
-                ->setOutputBOM(Writer::BOM_UTF8)
-                ->setDelimiter(';');
-        }
-
-
-        if (!empty($data)) {
-            $csv->insertOne(array_keys(reset($data)));
-            $csv->insertAll($data);
-        }
-
         $filename = $options['filename'] ?? 'leantime-dataexport.csv';
-
-        $csv->output($filename);
+        $writer = $this->getWriter($filename);
+        $writer->openToBrowser($filename);
+        if (!empty($data)) {
+            $writer->addRow(Row::fromValues(array_keys(reset($data))));
+            $writer->addRows(array_map(Row::fromValues(...), $data));
+        }
+        $writer->close();
         exit;
     }
 
@@ -91,5 +85,22 @@ abstract class AbstractExporter
         } catch (\Exception $exception) {
             return null;
         }
+    }
+
+    /**
+     * Get writer for a file path.
+     *
+     * @param string $path
+     * @return AbstractWriter
+     */
+    private function getWriter(string $path): AbstractWriter
+    {
+        $extension = strtolower(pathinfo($path, PATHINFO_EXTENSION));
+
+        return match ($extension) {
+            self::FORMAT_XLSX => new XLSXWriter(),
+            self::FORMAT_CSV => new CSVWriter(),
+            default => throw new \RuntimeException(sprintf('Unsupported writer type: %s', $extension))
+        };
     }
 }
