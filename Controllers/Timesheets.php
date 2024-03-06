@@ -49,10 +49,8 @@ final class Timesheets extends Controller
         // Cf. \Leantime\Domain\Timesheets\Controllers\ShowAll::run();
         Auth::authOrRedirect([Roles::$owner, Roles::$admin, Roles::$manager], true);
 
-        [$context, $query] = $this->getContext($params);
-        $id = $context['id'] ?? null;
-        $format = $query['format'] ?? AbstractExporter::FORMAT_CSV;
-        unset($query['format']);
+        $id = $params['id'] ?? null;
+        $format = $params['format'] ?? AbstractExporter::FORMAT_CSV;
 
         if ('all' === $id) {
             $filename = 'leantime_timesheets';
@@ -64,7 +62,7 @@ final class Timesheets extends Controller
             }
             $filename .= '.' . $format;
             $this->timesheetsExporter->export(
-                $query,
+                $params,
                 options: [
                     'filename' => $filename,
                     'format' => $format,
@@ -73,25 +71,5 @@ final class Timesheets extends Controller
         }
 
         throw new HttpResponseException(Frontcontroller::redirect(BASE_URL . '/errors/error404'));
-    }
-
-    /**
-     * Get context from query string parameters.
-     *
-     * @return array
-     *   id: id
-     *   format: format
-     *   query: the rest of the parameters
-     */
-    private function getContext(array $params): array
-    {
-        $leantime = array_filter(
-            $params,
-            static fn (mixed $key) => in_array($key, ['id', 'act', 'request_parts'], true),
-            ARRAY_FILTER_USE_KEY
-        );
-        $query  = array_diff_key($params, $leantime);
-
-        return [$leantime, $query];
     }
 }
