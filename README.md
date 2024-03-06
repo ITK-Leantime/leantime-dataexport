@@ -4,6 +4,25 @@ Data export plugin for Leantime
 
 ## Installation
 
+Download a release from
+<https://github.com/ITK-Leantime/leantime-dataexport/releases> and extract into
+your Leantime `Plugins` folder, e.g.
+
+``` shell
+curl --silent --location https://github.com/ITK-Leantime/leantime-dataexport/releases/download/0.0.2/leantime-dataexport-0.0.2.tar.gz | tar xv
+```
+
+Install and enable the plugin:
+
+``` shell
+bin/leantime plugin:install leantime/dataexport --no-interaction
+bin/leantime plugin:enable leantime/dataexport --no-interaction
+```
+
+Go to `/timesheets/showAll` and enjoy your new exports.
+
+## Development
+
 Clone this repository into your Leantime plugin folder:
 
 ``` shell
@@ -23,8 +42,6 @@ Install and enable the plugin:
 bin/leantime plugin:install leantime/dataexport --no-interaction
 bin/leantime plugin:enable leantime/dataexport --no-interaction
 ```
-
-## Development
 
 ### Coding standards
 
