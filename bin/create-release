@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+set -o errexit -o errtrace -o noclobber -o nounset -o pipefail
+IFS=$'\n\t'
+
+script_dir=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
+project_dir=$(cd "$(dirname "$script_dir")" && pwd)
+
+tag=${1:-}
+if [ -z "$tag" ]; then
+  (>&2 echo "Usage: $0 tag")
+  exit
+fi
+
+cd "$project_dir"
+
+COMPOSER=composer.plugin.json composer install --no-dev
+name="leantime-dataexport-${tag}.tar.gz"
+tar --exclude ".git*" --exclude "$name" --create --file "$name" .
+sha256sum "$name" > checksum.txt
