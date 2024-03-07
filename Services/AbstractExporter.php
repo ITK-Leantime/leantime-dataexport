@@ -1,6 +1,6 @@
 <?php
 
-namespace Leantime\Plugins\Dataexport\Services;
+namespace Leantime\Plugins\DataExport\Services;
 
 require_once __DIR__ . '/../vendor-plugin/autoload.php';
 

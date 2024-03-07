@@ -28,13 +28,13 @@ Go to `/timesheets/showAll` and enjoy your new exports:
 Clone this repository into your Leantime plugin folder:
 
 ``` shell
-git clone github.com/itk-leantime/leantime-dataexport app/Plugins/Dataexport
+git clone github.com/itk-leantime/leantime-dataexport app/Plugins/DataExport
 ```
 
 Install plugin dependencies:
 
 ``` shell
-cd app/Plugins/Dataexport
+cd app/Plugins/DataExport
 docker run --tty --interactive --rm --env COMPOSER=composer.plugin.json --volume ${PWD}:/app itkdev/php8.1-fpm:latest composer install --no-dev
 ```
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace Leantime\Plugins\Dataexport\Services;
+namespace Leantime\Plugins\DataExport\Services;
 
 use Carbon\Carbon;
 use Leantime\Domain\Setting\Services\Setting;

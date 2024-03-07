@@ -1,6 +1,6 @@
 <?php
 
-namespace Leantime\Plugins\Dataexport\Controllers;
+namespace Leantime\Plugins\DataExport\Controllers;
 
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Leantime\Core\Controller;
@@ -10,8 +10,8 @@ use Leantime\Core\Language;
 use Leantime\Core\Template;
 use Leantime\Domain\Auth\Models\Roles;
 use Leantime\Domain\Auth\Services\Auth;
-use Leantime\Plugins\Dataexport\Services\AbstractExporter;
-use Leantime\Plugins\Dataexport\Services\TimesheetsExporter;
+use Leantime\Plugins\DataExport\Services\AbstractExporter;
+use Leantime\Plugins\DataExport\Services\TimesheetsExporter;
 
 /**
  * Timesheets controller.

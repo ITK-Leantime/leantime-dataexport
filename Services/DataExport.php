@@ -1,15 +1,15 @@
 <?php
 
-namespace Leantime\Plugins\Dataexport\Services;
+namespace Leantime\Plugins\DataExport\Services;
 
 /**
- * Dataexport plugin.
+ * DataExport plugin.
  */
-class Dataexport
+class DataExport
 {
     private static $assets = [
         // source => target
-        __DIR__ . '/../assets/Dataexport.js' => APP_ROOT . '/public/dist/js/plugin-Dataexport.js',
+        __DIR__ . '/../assets/DataExport.js' => APP_ROOT . '/public/dist/js/plugin-DataExport.js',
     ];
 
     /**
