@@ -54,10 +54,10 @@ final class Timesheets extends Controller
 
         if ('all' === $id) {
             $filename = 'leantime_timesheets';
-            if ($date = $this->timesheetsExporter->getDateTime($criteria['dateFrom'] ?? null)) {
+            if ($date = $this->timesheetsExporter->getDateTime($params['dateFrom'] ?? null)) {
                 $filename .= '_' . $date->format(\DateTimeInterface::ATOM);
             }
-            if ($date = $this->timesheetsExporter->getDateTime($criteria['dateTo'] ?? null)) {
+            if ($date = $this->timesheetsExporter->getDateTime($params['dateTo'] ?? null)) {
                 $filename .= '_' . $date->format(\DateTimeInterface::ATOM);
             }
             $filename .= '.' . $format;
