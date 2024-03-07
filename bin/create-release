@@ -16,9 +16,9 @@ cd "$project_dir"
 build_dir=Dataexport
 name="leantime-dataexport-${tag}.tar.gz"
 
-COMPOSER=composer.plugin.json composer install --no-dev
+COMPOSER=composer-plugin.json composer install --no-dev
 mkdir -p "$build_dir"
-rsync --archive --compress --exclude "*.tar.gz" --exclude ".git*" --exclude "bin" --exclude "composer.plugin.*" . "$build_dir"
+rsync --archive --compress --exclude "*.tar.gz" --exclude ".git*" --exclude "bin" --exclude "composer-plugin.*" . "$build_dir"
 tar --create --file "$name" "$build_dir"
 rm -fr "$build_dir"
 sha256sum "$name" >| checksum.txt
