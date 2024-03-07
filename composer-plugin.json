@@ -12,12 +12,6 @@
         "phpstan/phpstan": "^1.10",
         "phpunit/phpunit": "^10.5"
     },
-    "config": {
-        "allow-plugins": {
-            "metasyntactical/composer-plugin-license-check": true,
-            "dealerdirect/phpcodesniffer-composer-installer": true
-        }
-    },
     "scripts": {
         "coding-standards-check/phpcs": [
             "phpcs --ignore='*/vendor*/*' ."
@@ -48,6 +42,10 @@
         }
     },
     "config": {
-        "vendor-dir": "vendor-plugin"
+        "vendor-dir": "vendor-plugin",
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true,
+            "metasyntactical/composer-plugin-license-check": true
+        }
     }
 }

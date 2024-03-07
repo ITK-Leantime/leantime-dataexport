@@ -7,6 +7,11 @@ namespace Leantime\Plugins\Dataexport\Services;
  */
 class Dataexport
 {
+    private static $assets = [
+        // source => target
+        __DIR__ . '/../assets/Dataexport.js' => APP_ROOT . '/public/dist/js/plugin-Dataexport.js',
+    ];
+
     /**
      * Install plugin.
      *
@@ -14,11 +19,12 @@ class Dataexport
      */
     public function install(): void
     {
-        // @TODO Find a (good) way to get the Leantime application root.
-        symlink(
-            __DIR__ . '/../assets/Dataexport.js',
-            __DIR__ . '/../../../../public/dist/js/plugin-Dataexport.js'
-        );
+        foreach (static::$assets as $source => $target) {
+            if (file_exists($target)) {
+                unlink($target);
+            }
+            symlink($source, $target);
+        }
     }
 
     /**
@@ -28,13 +34,9 @@ class Dataexport
      */
     public function uninstall(): void
     {
-        $files = [
-            __DIR__ . '/../../../../public/dist/js/plugin-Dataexport.js',
-        ];
-
-        foreach ($files as $file) {
-            if (file_exists($file)) {
-                unlink($file);
+        foreach (static::$assets as $target) {
+            if (file_exists($target)) {
+                unlink($target);
             }
         }
     }

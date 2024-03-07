@@ -2,6 +2,7 @@
 
 namespace Leantime\Plugins\Dataexport\Services;
 
+use Carbon\Carbon;
 use Leantime\Domain\Setting\Services\Setting;
 use Leantime\Domain\Timesheets\Repositories\Timesheets;
 
@@ -29,8 +30,8 @@ final class TimesheetsExporter extends AbstractExporter
     {
         $projectId = (int) ($criteria['project'] ?? 0);
         $kind = $criteria['kind'] ?? null;
-        $dateFrom = $this->getDateTime($criteria['dateFrom'] ?? '2000-01-01')->format('Y-m-d H:i:s');
-        $dateTo = $this->getDateTime($criteria['dateTo'] ?? '2100-01-01')->format('Y-m-d H:i:s');
+        $dateFrom = $this->getDateTime($criteria['dateFrom'], new Carbon('2000-01-01'));
+        $dateTo = $this->getDateTime($criteria['dateTo'], new Carbon('2100-01-01'));
         $userId = (int) ($criteria['userId'] ?? 0);
         $invEmpl = 'on' === ($criteria['invEmpl'] ?? null) ? '1' : '';
         $invComp = 'on' === ($criteria['invComp'] ?? null) ? '1' : '';
