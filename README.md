@@ -19,7 +19,9 @@ bin/leantime plugin:install leantime/dataexport --no-interaction
 bin/leantime plugin:enable leantime/dataexport --no-interaction
 ```
 
-Go to `/timesheets/showAll` and enjoy your new exports.
+Go to `/timesheets/showAll` and enjoy your new exports:
+
+![Export buttons](docs/images/export-buttons.png)
 
 ## Development
 
