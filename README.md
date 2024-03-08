@@ -28,7 +28,7 @@ Go to `/timesheets/showAll` and enjoy your new exports:
 Clone this repository into your Leantime plugin folder:
 
 ``` shell
-git clone github.com/itk-leantime/leantime-dataexport app/Plugins/DataExport
+git clone https://github.com/itk-leantime/leantime-dataexport app/Plugins/DataExport
 ```
 
 Install plugin dependencies:
