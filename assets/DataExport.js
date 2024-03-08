@@ -6,7 +6,7 @@ addEventListener('DOMContentLoaded', () => {
         button.name = 'format';
         button.value = format;
         button.formMethod = 'GET'
-        button.formAction = '/dataexport/timesheets/all'
+        button.formAction = '/data_export/timesheets/all'
 
         return button
     }
