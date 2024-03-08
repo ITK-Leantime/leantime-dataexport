@@ -30,12 +30,12 @@ final class TimesheetsExporter extends AbstractExporter
     {
         $projectId = (int) ($criteria['project'] ?? 0);
         $kind = $criteria['kind'] ?? null;
-        $dateFrom = $this->getDateTime($criteria['dateFrom'], new Carbon('2000-01-01'));
-        $dateTo = $this->getDateTime($criteria['dateTo'], new Carbon('2100-01-01'));
+        $dateFrom = $this->getDateTime($criteria['dateFrom'] ?? null, new Carbon('2000-01-01'));
+        $dateTo = $this->getDateTime($criteria['dateTo'] ?? null, new Carbon('2100-01-01'));
         $userId = (int) ($criteria['userId'] ?? 0);
-        $invEmpl = 'on' === ($criteria['invEmpl'] ?? null) ? '1' : '';
-        $invComp = 'on' === ($criteria['invComp'] ?? null) ? '1' : '';
-        $paid = 'on' === ($criteria['paid'] ?? null) ? '1' : '';
+        $invEmpl = filter_var($criteria['invEmpl'] ?? null, FILTER_VALIDATE_BOOLEAN) ? '1' : '';
+        $invComp = filter_var($criteria['invComp'] ?? null, FILTER_VALIDATE_BOOLEAN) ? '1' : '';
+        $paid = filter_var($criteria['paid'] ?? null, FILTER_VALIDATE_BOOLEAN) ? '1' : '';
         $clientId = (int) ($criteria['clientId'] ?? 0);
 
         return $this->timesheets->getAll($projectId, $kind, $dateFrom, $dateTo, $userId, $invEmpl, $invComp, $paid, $clientId, 0);
