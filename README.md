@@ -35,7 +35,7 @@ Install plugin dependencies:
 
 ``` shell
 cd app/Plugins/DataExport
-docker run --tty --interactive --rm --env COMPOSER=composer.plugin.json --volume ${PWD}:/app itkdev/php8.1-fpm:latest composer install --no-dev
+docker run --tty --interactive --rm --env COMPOSER=composer-plugin.json --volume ${PWD}:/app itkdev/php8.1-fpm:latest composer install --no-dev
 ```
 
 Install and enable the plugin:
