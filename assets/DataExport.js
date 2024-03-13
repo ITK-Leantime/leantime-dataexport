@@ -11,8 +11,8 @@ addEventListener('DOMContentLoaded', () => {
         return button
     }
     const buttons = [
-        createButton(leantime.i18n.__('Export (csv)') ?? 'Export (csv)', 'csv'),
-        createButton(leantime.i18n.__('Export (xlsx)') ?? 'Export (xlsx)', 'xlsx')
+        createButton(leantime.i18n.__('dataexport.export_csv'), 'csv'),
+        createButton(leantime.i18n.__('dataexport.export_xlsx'), 'xlsx')
     ]
 
     // We want to add our buttons inside .dt-buttons inside #tableButtons, but that element may not exist yet.
