@@ -14,13 +14,13 @@
     },
     "scripts": {
         "coding-standards-check/phpcs": [
-            "phpcs --ignore='*/vendor*/*' ."
+            "phpcs ."
         ],
         "coding-standards-check": [
             "@coding-standards-check/phpcs"
         ],
         "coding-standards-apply/phpcbf": [
-            "phpcbf --ignore='*/vendor*/*' ."
+            "phpcbf ."
         ],
         "coding-standards-apply": [
             "@coding-standards-apply/phpcbf"

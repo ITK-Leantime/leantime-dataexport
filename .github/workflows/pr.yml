@@ -28,3 +28,27 @@ jobs:
       - name: Create test release
         run: |
           ./bin/create-release test
+
+  assets-coding-standards:
+    name: Assets coding standards
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Coding standards
+        run: |
+          docker run --rm --volume ${PWD}:/app node:20 yarn --cwd /app install
+          docker run --rm --volume ${PWD}:/app node:20 yarn --cwd /app coding-standards-check/prettier
+
+  markdown-coding-standards:
+    name: Markdown coding standards
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Coding standards
+        run: |
+          docker run --rm --volume ${PWD}:/app node:20 yarn --cwd /app install
+          docker run --rm --volume ${PWD}:/app node:20 yarn --cwd /app coding-standards-check/markdownlint
