@@ -1,6 +1,6 @@
 {
     "name": "leantime/dataexport",
-    "description": "",
+    "description": "Data export plugin",
     "version": "1.0",
     "authors": [
         {

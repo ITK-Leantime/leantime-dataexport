@@ -18,16 +18,17 @@ use Leantime\Plugins\DataExport\Services\TimesheetsExporter;
  */
 final class Timesheets extends Controller
 {
+    private readonly TimesheetsExporter $timesheetsExporter;
+
     /**
-     * Constructor.
+     * {@inheritdoc}
+     *
+     * @return void
      */
-    public function __construct(
-        private readonly TimesheetsExporter $timesheetsExporter,
-        IncomingRequest $incomingRequest,
-        Template $tpl,
-        Language $language
-    ) {
-        parent::__construct($incomingRequest, $tpl, $language);
+    public function init(
+        TimesheetsExporter $timesheetsExporter
+    ): void {
+        $this->timesheetsExporter = $timesheetsExporter;
     }
 
     /**
