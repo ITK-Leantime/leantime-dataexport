@@ -15,7 +15,10 @@ Events::add_filter_listener(
     'leantime.core.language.readIni.language_files',
     function (array $payload, array $context): array {
         $language = $context['language'];
-        $payload[__DIR__ . '/Language/' . $language . '.ini'] = 'en-US' !== $language;
+        $languageFile = __DIR__ . '/Language/' . $language . '.ini';
+        if (file_exists($languageFile)) {
+            $payload[$languageFile] = 'en-US' !== $language;
+        }
 
         return $payload;
     }
