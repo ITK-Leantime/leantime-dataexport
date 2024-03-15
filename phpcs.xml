@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <ruleset name="PHP_CodeSniffer">
+    <!-- Leantime PHP_CodeSniffer configuration start -->
     <description>PHP_CodeSniffer configuration</description>
     <rule ref="PSR12">
         <exclude name="Squiz.Classes.ValidClassName" />
@@ -8,6 +9,7 @@
         <exclude name="Squiz.Commenting.FunctionComment.InvalidReturn" />
     </rule>
 
+    <!-- Note: `vendor` changed to `vendor-plugin` -->
     <arg name="bootstrap" value="vendor-plugin/zebra-north/phpcs-short-types/short-types.php"/>
 
     <rule ref="Modernize" />
@@ -54,4 +56,13 @@
         </properties>
     </rule>
     -->
+    <!-- Leantime PHP_CodeSniffer configuration end -->
+
+    <exclude-pattern>assets/</exclude-pattern>
+    <exclude-pattern>vendor*/</exclude-pattern>
+    <exclude-pattern>node_modules/</exclude-pattern>
+
+    <!-- Not (yet) a part of the Leantime coding standards
+         (https://github.com/Leantime/leantime/blob/master/phpcs.xml) -->
+    <rule ref="Squiz.Strings.DoubleQuoteUsage"/>
 </ruleset>
