@@ -39,8 +39,8 @@ final class TimesheetsExporter extends AbstractExporter
 
       $data = $this->timesheets->getAll($projectId, $kind, $dateFrom, $dateTo, $userId, $invEmpl, $invComp, $paid, $clientId, 0);
 
-      foreach ($data as $key => $row) {
-        $data[$key]['fullname'] = "{$row['firstname']} {$row['lastname']}";
+      foreach ($data as &$row) {
+        $row['fullname'] = "{$row['firstname']} {$row['lastname']}";
       }
 
       return $data;
