@@ -40,22 +40,9 @@ final class TimesheetsExporter extends AbstractExporter
       $data = $this->timesheets->getAll($projectId, $kind, $dateFrom, $dateTo, $userId, $invEmpl, $invComp, $paid, $clientId, 0);
 
       foreach ($data as $key => $row) {
-        $data[$key]['fullname'] = $this->addFullname($row);
+        $data[$key]['fullname'] = "{$row['firstname']} {$row['lastname']}";
       }
 
       return $data;
     }
-
-  /**
-   * Add fullname cell to dataset.
-   *
-   * @param array $row
-   *   The row
-   *
-   * @return string
-   *   The full name.
-   */
-  private function addFullname(array $row): string {
-    return "{$row['firstname']} {$row['lastname']}";
-  }
 }
