@@ -43,6 +43,8 @@ abstract class AbstractExporter
     {
         $data = $this->generateData($criteria);
 
+        $data = $this->addMoreFields($data);
+
         // We want to keep only non-numeric keys.
         $data = array_map(
             static fn(array $row) => array_filter($row, static fn($key) => !is_int($key), ARRAY_FILTER_USE_KEY),
@@ -94,5 +96,20 @@ abstract class AbstractExporter
             self::FORMAT_CSV => new CSVWriter(),
             default => throw new \RuntimeException(sprintf('Unsupported writer type: %s', $extension))
         };
+    }
+
+  /**
+   * Add additional fields to dataset.
+   *
+   * @param $data
+   *   The original dataset.
+   *
+   * @return array
+   *   The updated dataset.
+   */
+    private function addMoreFields(array &$data): array {
+      $data[0]['fullName'] = "{$data[0]['firstname']} {$data[0]['lastname']}";
+
+      return $data;
     }
 }
