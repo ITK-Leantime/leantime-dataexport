@@ -64,6 +64,13 @@ docker run --tty --interactive --rm --volume ${PWD}:/app node:20 yarn --cwd /app
 docker run --tty --interactive --rm --volume ${PWD}:/app node:20 yarn --cwd /app coding-standards-check
 ```
 
+### Code analysis
+
+```shell
+docker run --tty --interactive --rm --volume ${PWD}:/app itkdev/php8.1-fpm:latest composer install
+docker run --tty --interactive --rm --volume ${PWD}:/app itkdev/php8.1-fpm:latest composer code-analysis
+```
+
 ## Release
 
 We use GitHub Actions to build releases (cf. `.github/workflows/release.yaml`).
