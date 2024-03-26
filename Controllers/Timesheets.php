@@ -18,7 +18,7 @@ use Leantime\Plugins\DataExport\Services\TimesheetsExporter;
  */
 final class Timesheets extends Controller
 {
-    private readonly TimesheetsExporter $timesheetsExporter;
+    private TimesheetsExporter $timesheetsExporter;
 
     /**
      * {@inheritdoc}
@@ -42,6 +42,8 @@ final class Timesheets extends Controller
      * ]
      *
      * @see \Leantime\Core\Frontcontroller::executeAction().
+     *
+     * @param array<string, mixed> $params
      *
      * @return void
      */
