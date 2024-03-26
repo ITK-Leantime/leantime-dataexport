@@ -38,6 +38,12 @@ final class TimesheetsExporter extends AbstractExporter
         $paid = filter_var($criteria['paid'] ?? null, FILTER_VALIDATE_BOOLEAN) ? '1' : '';
         $clientId = (int) ($criteria['clientId'] ?? 0);
 
-        return $this->timesheets->getAll($projectId, $kind, $dateFrom, $dateTo, $userId, $invEmpl, $invComp, $paid, $clientId, 0);
+        $data = $this->timesheets->getAll($projectId, $kind, $dateFrom, $dateTo, $userId, $invEmpl, $invComp, $paid, $clientId, 0);
+
+        foreach ($data as &$row) {
+            $row['fullname'] = $row['firstname'] . ' ' . $row['lastname'];
+        }
+
+        return $data;
     }
 }
