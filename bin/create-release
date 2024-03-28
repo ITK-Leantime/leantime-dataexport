@@ -13,12 +13,10 @@ fi
 
 cd "$project_dir"
 
-build_dir=DataExport
-name="leantime-dataexport-${tag}.tar.gz"
+plugin_name=DataExport
+name="leantime-plugin-${plugin_name}-${tag}.tar.gz"
 
-COMPOSER=composer-plugin.json composer install --no-dev
-mkdir -p "$build_dir"
-rsync --archive --compress --exclude "*.tar.gz" --exclude ".git*" --exclude "bin" --exclude "composer-plugin.*" . "$build_dir"
-tar --create --file "$name" "$build_dir"
-rm -fr "$build_dir"
+composer install --no-dev
+
+tar --create --file "$name" --exclude-vcs --exclude-from="$script_dir/build-exclude.txt" --transform "s/^\./$plugin_name/" .
 sha256sum "$name" >| checksum.txt

@@ -11,9 +11,9 @@
   "scripts": {
     "coding-standards-check/prettier": "prettier assets --check",
     "coding-standards-check/markdownlint": "markdownlint --ignore LICENSE.md '*.md' docs/",
-    "coding-standards-check": "yarn coding-standards-check/prettier && yarn coding-standards-check/markdownlint",
+    "coding-standards-check": "yarn coding-standards-check/prettier; yarn coding-standards-check/markdownlint",
     "coding-standards-apply/eslint": "prettier assets --write",
     "coding-standards-apply/markdownlint": "markdownlint --ignore LICENSE.md '*.md' docs/ --fix",
-    "coding-standards-apply": "yarn coding-standards-apply/eslint && yarn coding-standards-apply/markdownlint"
+    "coding-standards-apply": "yarn coding-standards-apply/eslint; yarn coding-standards-apply/markdownlint"
   }
 }

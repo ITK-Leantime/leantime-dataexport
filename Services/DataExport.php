@@ -5,9 +5,12 @@ namespace Leantime\Plugins\DataExport\Services;
 /**
  * DataExport plugin.
  */
-class DataExport
+final class DataExport
 {
-    private static $assets = [
+    /**
+     * @var array<string, string>
+     */
+    private static array $assets = [
         // source => target
         __DIR__ . '/../assets/DataExport.js' => APP_ROOT . '/public/dist/js/plugin-DataExport.js',
     ];

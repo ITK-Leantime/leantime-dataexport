@@ -41,7 +41,7 @@ Install plugin dependencies:
 
 ``` shell
 cd app/Plugins/DataExport
-docker run --tty --interactive --rm --env COMPOSER=composer-plugin.json --volume ${PWD}:/app itkdev/php8.1-fpm:latest composer install --no-dev
+docker run --tty --interactive --rm --volume ${PWD}:/app itkdev/php8.1-fpm:latest composer install --no-dev
 ```
 
 Install and enable the plugin:
@@ -54,12 +54,32 @@ bin/leantime plugin:enable leantime/dataexport --no-interaction
 ### Coding standards
 
 ``` shell
-docker run --tty --interactive --rm --env COMPOSER=composer-plugin.json --volume ${PWD}:/app itkdev/php8.1-fpm:latest composer install
-docker run --tty --interactive --rm --env COMPOSER=composer-plugin.json --volume ${PWD}:/app itkdev/php8.1-fpm:latest composer coding-standards-check
-docker run --tty --interactive --rm --env COMPOSER=composer-plugin.json --volume ${PWD}:/app itkdev/php8.1-fpm:latest composer coding-standards-apply
+docker run --tty --interactive --rm --volume ${PWD}:/app itkdev/php8.1-fpm:latest composer install
+docker run --tty --interactive --rm --volume ${PWD}:/app itkdev/php8.1-fpm:latest composer coding-standards-check
+docker run --tty --interactive --rm --volume ${PWD}:/app itkdev/php8.1-fpm:latest composer coding-standards-apply
 ```
 
 ```shell
 docker run --tty --interactive --rm --volume ${PWD}:/app node:20 yarn --cwd /app install
 docker run --tty --interactive --rm --volume ${PWD}:/app node:20 yarn --cwd /app coding-standards-check
+```
+
+### Code analysis
+
+```shell
+docker run --tty --interactive --rm --volume ${PWD}:/app itkdev/php8.1-fpm:latest composer install
+docker run --tty --interactive --rm --volume ${PWD}:/app itkdev/php8.1-fpm:latest composer code-analysis
+```
+
+## Release
+
+We use GitHub Actions to build releases (cf. `.github/workflows/release.yaml`).
+To test building a release, run
+
+```shell
+# https://github.com/catthehacker/docker_images/pkgs/container/ubuntu#images-available
+# Note: The ghcr.io/catthehacker/ubuntu:full-latest image is HUGE!
+docker run --rm --volume ${PWD}:/app --workdir /app ghcr.io/catthehacker/ubuntu:full-latest bin/create-release test
+# Show release content
+tar tvf leantime-plugin-*-test.tar.gz
 ```

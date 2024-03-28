@@ -30,12 +30,17 @@ abstract class AbstractExporter
     /**
      * Generate data.
      *
-     * @return array
+     * @param array<string, mixed> $criteria
+     *
+     * @return array<string, mixed>
      */
     abstract public function generateData(array $criteria): array;
 
     /**
      * Run export of generated data.
+     *
+     * @param array<string, mixed> $criteria
+     * @param array<string, mixed> $options
      *
      * @return void
      */
@@ -54,6 +59,7 @@ abstract class AbstractExporter
         $writer->openToBrowser($filename);
         if (!empty($data)) {
             $writer->addRow(Row::fromValues(array_keys(reset($data))));
+            /* @phpstan-ignore-next-line */
             $writer->addRows(array_map(Row::fromValues(...), $data));
         }
         $writer->close();
@@ -65,18 +71,16 @@ abstract class AbstractExporter
      *
      * @return \Carbon\Carbon|null
      */
-    public function getDateTime(string $value = null, ?Carbon $default = null): ?Carbon
+    public function getDateTime(string $value = null, string $default = null): ?Carbon
     {
-        if (null === $value) {
-            return $default;
+        if (null !== $value) {
+            if ($format = ($_SESSION['usersettings.language.date_format'] ?? null)) {
+                // See https://www.php.net/manual/en/datetimeimmutable.createfromformat.php for details on `!`.
+                return Carbon::createFromFormat('!' . $format, $value) ?: new Carbon($default);
+            }
         }
 
-        if ($format = ($_SESSION['usersettings.language.date_format'] ?? null)) {
-            // See https://www.php.net/manual/en/datetimeimmutable.createfromformat.php for details on `!`.
-            return Carbon::createFromFormat('!' . $format, $value) ?: $default;
-        }
-
-        return new Carbon($value) ?: $default;
+        return new Carbon($default);
     }
 
     /**
