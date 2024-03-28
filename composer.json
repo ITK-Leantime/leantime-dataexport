@@ -18,6 +18,12 @@
     "require": {
         "openspout/openspout": "^4.23"
     },
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://rimi-itk.github.io/composer/"
+        }
+    ],
     "require-dev": {
         "ergebnis/composer-normalize": "^2.42",
         "friendsofphp/php-cs-fixer": "^3.51",
