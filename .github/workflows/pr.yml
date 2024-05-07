@@ -27,7 +27,7 @@ jobs:
 
       - name: Create test release
         run: |
-          ./bin/create-release test
+          ./bin/create-release dev-test
 
   assets-coding-standards:
     name: Assets coding standards

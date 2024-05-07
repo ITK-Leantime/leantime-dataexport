@@ -16,6 +16,8 @@ cd "$project_dir"
 plugin_name=DataExport
 name="leantime-plugin-${plugin_name}-${tag}.tar.gz"
 
+# Make sure that `composer.json` has the correct version.
+composer config version "${tag}"
 composer install --no-dev
 
 tar --create --file "$name" --exclude-vcs --exclude-from="$script_dir/build-exclude.txt" --transform "s/^\./$plugin_name/" .

@@ -7,25 +7,27 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-- [#10](https://github.com/ITK-Leantime/leantime-dataexport/pull/10)
+* [PR-11](https://github.com/ITK-Leantime/leantime-dataexport/pull/11)
+  Set version on build
+* [PR-10](https://github.com/ITK-Leantime/leantime-dataexport/pull/10)
   Code analysis
-- [#9](https://github.com/ITK-Leantime/leantime-dataexport/pull/9)
+* [PR-9](https://github.com/ITK-Leantime/leantime-dataexport/pull/9)
   Added full name to export.
-- [#8](https://github.com/ITK-Leantime/leantime-dataexport/pull/8)
+* [PR-8](https://github.com/ITK-Leantime/leantime-dataexport/pull/8)
   Updated and applied coding standards.
-- [#7](https://github.com/ITK-Leantime/leantime-dataexport/pull/7)
+* [PR-7](https://github.com/ITK-Leantime/leantime-dataexport/pull/7)
   Updated handling of translations
-- [#6](https://github.com/ITK-Leantime/leantime-dataexport/pull/6)
+* [PR-6](https://github.com/ITK-Leantime/leantime-dataexport/pull/6)
   Added translations.
-- `Dataexport` → `DataExport`
+* `Dataexport` → `DataExport`
 
 ## [0.1.1] - 2024-03-07
 
-- Fixed create release script
+* Fixed create release script
 
 ## [0.1.0] - 2024-03-07
 
-- Added Leantime data export plugin
+* Added Leantime data export plugin
 
 [Unreleased]: https://github.com/itk-leantime/leantime-dataexport/compare/0.1.1...HEAD
 [0.1.1]: https://github.com/ITK-Leantime/leantime-dataexport/releases/tag/0.1.1
