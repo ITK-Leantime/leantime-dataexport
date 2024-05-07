@@ -39,5 +39,5 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          artifacts: "leantime-dataexport-*.tar.gz,checksum.txt"
+          artifacts: "leantime-*-*.tar.gz,checksum.txt"
           bodyFile: "body.md"

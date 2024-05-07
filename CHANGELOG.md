@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.1] - 2024-05-07
+
+* Fixed release build
+
 ## [1.0.0] - 2024-05-07
 
 * [PR-11](https://github.com/ITK-Leantime/leantime-dataexport/pull/11)
@@ -31,7 +35,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 * Added Leantime data export plugin
 
-[Unreleased]: https://github.com/itk-leantime/leantime-dataexport/compare/1.0.0...HEAD
+[Unreleased]: https://github.com/itk-leantime/leantime-dataexport/compare/1.0.1...HEAD
+[1.0.1]: https://github.com/itk-leantime/leantime-dataexport/compare/1.0.0...1.0.1
 [1.0.0]: https://github.com/itk-leantime/leantime-dataexport/compare/0.1.1...1.0.0
 [0.1.1]: https://github.com/ITK-Leantime/leantime-dataexport/releases/tag/0.1.1
 [0.1.0]: https://github.com/ITK-Leantime/leantime-dataexport/releases/tag/0.1.0
