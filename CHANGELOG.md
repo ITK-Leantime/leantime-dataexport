@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+- [#10](https://github.com/ITK-Leantime/leantime-dataexport/pull/10)
+  Code analysis
 - [#9](https://github.com/ITK-Leantime/leantime-dataexport/pull/9)
   Added full name to export.
 - [#8](https://github.com/ITK-Leantime/leantime-dataexport/pull/8)

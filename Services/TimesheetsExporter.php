@@ -24,14 +24,14 @@ final class TimesheetsExporter extends AbstractExporter
     /**
      * {@inheritdoc}
      *
-     * @return array
+     * @return array<string, mixed>
      */
     public function generateData(array $criteria): array
     {
         $projectId = (int) ($criteria['project'] ?? 0);
         $kind = $criteria['kind'] ?? null;
-        $dateFrom = $this->getDateTime($criteria['dateFrom'] ?? null, new Carbon('2000-01-01'));
-        $dateTo = $this->getDateTime($criteria['dateTo'] ?? null, new Carbon('2100-01-01'));
+        $dateFrom = $this->getDateTime($criteria['dateFrom'] ?? null, '2000-01-01');
+        $dateTo = $this->getDateTime($criteria['dateTo'] ?? null, '2100-01-01');
         $userId = (int) ($criteria['userId'] ?? 0);
         $invEmpl = filter_var($criteria['invEmpl'] ?? null, FILTER_VALIDATE_BOOLEAN) ? '1' : '';
         $invComp = filter_var($criteria['invComp'] ?? null, FILTER_VALIDATE_BOOLEAN) ? '1' : '';

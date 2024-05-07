@@ -5,9 +5,6 @@ namespace Leantime\Plugins\DataExport\Controllers;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Leantime\Core\Controller;
 use Leantime\Core\Frontcontroller;
-use Leantime\Core\IncomingRequest;
-use Leantime\Core\Language;
-use Leantime\Core\Template;
 use Leantime\Domain\Auth\Models\Roles;
 use Leantime\Domain\Auth\Services\Auth;
 use Leantime\Plugins\DataExport\Services\AbstractExporter;
@@ -18,7 +15,7 @@ use Leantime\Plugins\DataExport\Services\TimesheetsExporter;
  */
 final class Timesheets extends Controller
 {
-    private readonly TimesheetsExporter $timesheetsExporter;
+    private TimesheetsExporter $timesheetsExporter;
 
     /**
      * {@inheritdoc}
@@ -42,6 +39,8 @@ final class Timesheets extends Controller
      * ]
      *
      * @see \Leantime\Core\Frontcontroller::executeAction().
+     *
+     * @param array<string, mixed> $params
      *
      * @return void
      */
