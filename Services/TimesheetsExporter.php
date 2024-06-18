@@ -30,8 +30,9 @@ final class TimesheetsExporter extends AbstractExporter
     {
         $projectId = (int) ($criteria['project'] ?? 0);
         $kind = $criteria['kind'] ?? null;
-        $dateFrom = $this->getDateTime($criteria['dateFrom'] ?? null, '2000-01-01');
-        $dateTo = $this->getDateTime($criteria['dateTo'] ?? null, '2100-01-01');
+        // In "all" timesheets the dates are named dateFrom/dateTo and in "my timesheet the dates are named startDate/endDate
+        $dateFrom = $this->getDateTime($criteria['dateFrom'] ?? $criteria['startDate'], '2000-01-01');
+        $dateTo = $this->getDateTime($criteria['dateTo'] ?? $criteria['endDate'], '2100-01-01');
         $userId = (int) ($criteria['userId'] ?? 0);
         $invEmpl = filter_var($criteria['invEmpl'] ?? null, FILTER_VALIDATE_BOOLEAN) ? '1' : '';
         $invComp = filter_var($criteria['invComp'] ?? null, FILTER_VALIDATE_BOOLEAN) ? '1' : '';
