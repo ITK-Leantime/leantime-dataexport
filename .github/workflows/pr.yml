@@ -38,8 +38,7 @@ jobs:
 
       - name: Coding standards
         run: |
-          docker run --rm --volume ${PWD}:/app node:20 yarn --cwd /app install
-          docker run --rm --volume ${PWD}:/app node:20 yarn --cwd /app coding-standards-check/prettier
+          docker run --rm -v "$(pwd):/work" tmknom/prettier --check assets
 
   markdown-coding-standards:
     name: Markdown coding standards
@@ -50,8 +49,7 @@ jobs:
 
       - name: Coding standards
         run: |
-          docker run --rm --volume ${PWD}:/app node:20 yarn --cwd /app install
-          docker run --rm --volume ${PWD}:/app node:20 yarn --cwd /app coding-standards-check/markdownlint
+          docker run --rm --volume $PWD:/md peterdavehello/markdownlint markdownlint --ignore vendor --ignore LICENSE.md '**/*.md'
 
   composer-normalize:
     name: composer-normalize

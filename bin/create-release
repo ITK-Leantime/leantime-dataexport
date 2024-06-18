@@ -14,11 +14,54 @@ fi
 cd "$project_dir"
 
 plugin_name=DataExport
+
+release_files=(
+  CHANGELOG.md
+  Controllers/
+  Language/
+  README.md
+  Services/
+  composer.json
+  docs/
+  index.php
+  register.php
+  vendor/
+)
+
+
 name="leantime-plugin-${plugin_name}-${tag}.tar.gz"
+
+git config --global --add safe.directory "$PWD"
+if ! git diff --exit-code composer.json; then
+  (>&2 echo; echo composer.json is changed. Aborting.)
+  exit 1
+fi
 
 # Make sure that `composer.json` has the correct version.
 composer config version "${tag}"
-composer install --no-dev
+composer install --no-dev --classmap-authoritative
 
-tar --create --file "$name" --exclude-vcs --exclude-from="$script_dir/build-exclude.txt" --transform "s/^\./$plugin_name/" .
+release_dir=release
+target_dir="$release_dir/$plugin_name"
+mkdir -p "$target_dir"
+
+for f in "${release_files[@]}"; do
+  cp --archive --parents "$f" $target_dir
+done
+
+# Replace %%VERSION%% with actual version in build
+find $target_dir -type f -print0 | xargs -0 sed -i "s/%%VERSION%%/${tag}/g"
+
+tar --create --file "$name" -C "$release_dir" $plugin_name
 sha256sum "$name" >| checksum.txt
+
+# Clean up
+rm -fr $release_dir
+
+git checkout composer.json
+
+echo
+echo "Release content ($name)"
+echo
+tar tvf "$name" | grep -v '/$'
+echo

@@ -60,9 +60,13 @@ docker run --tty --interactive --rm --volume ${PWD}:/app itkdev/php8.1-fpm:lates
 ```
 
 ```shell
-docker run --tty --interactive --rm --volume ${PWD}:/app node:20 yarn --cwd /app install
-docker run --tty --interactive --rm --volume ${PWD}:/app node:20 yarn --cwd /app coding-standards-apply
-docker run --tty --interactive --rm --volume ${PWD}:/app node:20 yarn --cwd /app coding-standards-check
+docker run --rm -v "$(pwd):/work" tmknom/prettier --write assets
+docker run --rm -v "$(pwd):/work" tmknom/prettier --check assets
+```
+
+```shell
+docker run --rm --volume $PWD:/md peterdavehello/markdownlint markdownlint --ignore vendor --ignore LICENSE.md '**/*.md' --fix
+docker run --rm --volume $PWD:/md peterdavehello/markdownlint markdownlint --ignore vendor --ignore LICENSE.md '**/*.md'
 ```
 
 ### Code analysis
@@ -78,9 +82,5 @@ We use GitHub Actions to build releases (cf. `.github/workflows/release.yaml`).
 To test building a release, run
 
 ```shell
-# https://github.com/catthehacker/docker_images/pkgs/container/ubuntu#images-available
-# Note: The ghcr.io/catthehacker/ubuntu:full-latest image is HUGE!
-docker run --rm --volume ${PWD}:/app --workdir /app ghcr.io/catthehacker/ubuntu:full-latest bin/create-release test
-# Show release content
-tar tvf leantime-plugin-*-test.tar.gz
+docker run --tty --interactive --rm --volume ${PWD}:/app itkdev/php8.1-fpm:latest bin/create-release dev-test
 ```
