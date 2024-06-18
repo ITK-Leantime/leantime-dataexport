@@ -12,7 +12,8 @@ final class DataExport
      */
     private static array $assets = [
         // source => target
-        __DIR__ . '/../assets/DataExport.js' => APP_ROOT . '/public/dist/js/plugin-DataExport.js',
+        __DIR__ . '/../assets/MyTimesheetDataExport.js' => APP_ROOT . '/public/dist/js/plugin-MyTimesheetDataExport.js',
+        __DIR__ . '/../assets/AllTimesheetsDataExport.js' => APP_ROOT . '/public/dist/js/plugin-AllTimesheetsDataExport.js',
     ];
 
     /**
