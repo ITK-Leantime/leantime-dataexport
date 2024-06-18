@@ -29,7 +29,7 @@ final class TimesheetsExporter extends AbstractExporter
     public function generateData(array $criteria): array
     {
         $projectId = (int) ($criteria['project'] ?? 0);
-        $kind = $criteria['kind'] ?? null;
+        $kind = $criteria['kind'] ?? 'all';
         // In "all" timesheets the dates are named dateFrom/dateTo and in "my timesheet the dates are named startDate/endDate
         $dateFrom = $this->getDateTime($criteria['dateFrom'] ?? $criteria['startDate'], '2000-01-01');
         $dateTo = $this->getDateTime($criteria['dateTo'] ?? $criteria['endDate'], '2100-01-01');
