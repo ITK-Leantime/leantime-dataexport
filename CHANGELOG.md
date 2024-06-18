@@ -9,6 +9,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 * [PR-14](https://github.com/ITK-Leantime/leantime-dataexport/pull/14)
   Cleaned up code checks and release script
+* [PR-13](https://github.com/ITK-Leantime/leantime-dataexport/pull/13)
+  Added export of "my timesheets"
 
 ## [1.0.1] - 2024-05-07
 
