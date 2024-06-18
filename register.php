@@ -12,6 +12,15 @@ Events::add_event_listener(
     }
 );
 
+Events::add_event_listener(
+    'leantime.core.template.tpl.timesheets.showMy.afterScriptLibTags',
+    function (array $context) {
+        if ('timesheets.showMy' === ($context['current_route'] ?? null)) {
+            echo '<script src="/dist/js/plugin-MyTimesheetDataExport.js"></script>';
+        }
+    }
+);
+
 Events::add_filter_listener(
     'leantime.core.language.readIni.language_files',
     function (array $payload, array $context): array {
