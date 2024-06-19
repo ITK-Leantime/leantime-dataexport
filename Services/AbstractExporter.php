@@ -2,7 +2,7 @@
 
 namespace Leantime\Plugins\DataExport\Services;
 
-require_once __DIR__ . '/../vendor-plugin/autoload.php';
+require_once __DIR__ . '/../vendor/autoload.php';
 
 use Carbon\Carbon;
 use Leantime\Domain\Setting\Services\Setting;

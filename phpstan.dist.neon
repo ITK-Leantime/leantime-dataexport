@@ -9,9 +9,7 @@ parameters:
 
     ignoreErrors:
         - '#Constant (APP_ROOT|BASE_URL) not found.#'
-
-    checkGenericClassInNonGenericObjectType: false
-
+        # - identifier: missingType.generics
 
 # Local Variables:
 # mode: yaml
