@@ -16,7 +16,8 @@ Events::add_event_listener(
     'leantime.core.template.tpl.timesheets.showMy.afterScriptLibTags',
     function (array $context) {
         if ('timesheets.showMy' === ($context['current_route'] ?? null)) {
-            echo '<script src="/dist/js/plugin-MyTimesheetDataExport.js"></script>';
+            $url = '/dist/js/plugin-MyTimesheetDataExport.js?' . http_build_query(['v' => '%%VERSION%%']);
+            echo '<script src="' . htmlspecialchars($url) . '"></script>';
         }
     }
 );
