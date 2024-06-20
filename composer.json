@@ -3,7 +3,7 @@
     "description": "Data export plugin",
     "license": "MIT",
     "type": "leantime-plugin",
-    "version": "1.0",
+    "version": "1.0.0",
     "authors": [
         {
             "name": "Jeppe Krogh",
@@ -12,6 +12,10 @@
         {
             "name": "Mikkel Ricky",
             "email": "rimi@aarhus.dk"
+        },
+        {
+            "name": "Sine Jespersen",
+            "email": "sinje@aarhus.dk"
         }
     ],
     "homepage": "https://github.com/itk-leantime/leantime-dataexport",
