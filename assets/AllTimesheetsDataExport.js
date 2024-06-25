@@ -36,7 +36,7 @@ addEventListener("DOMContentLoaded", () => {
     if (null !== container) {
       addButtons(container);
     } else {
-      // We don't yat have the target element, so we wait for it.
+      // We don't yet have the target element, so we wait for it.
       const observer = new MutationObserver((mutationList, observer) => {
         for (const mutation of mutationList) {
           if (

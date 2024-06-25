@@ -6,7 +6,17 @@ Events::add_event_listener(
     'leantime.core.template.tpl.timesheets.showAll.afterScriptLibTags',
     function (array $context) {
         if ('timesheets.showAll' === ($context['current_route'] ?? null)) {
-            $url = '/dist/js/plugin-DataExport.js?' . http_build_query(['v' => '%%VERSION%%']);
+            $url = '/dist/js/plugin-AllTimesheetsDataExport.js?' . http_build_query(['v' => '%%VERSION%%']);
+            echo '<script src="' . htmlspecialchars($url) . '"></script>';
+        }
+    }
+);
+
+Events::add_event_listener(
+    'leantime.core.template.tpl.timesheets.showMy.afterScriptLibTags',
+    function (array $context) {
+        if ('timesheets.showMy' === ($context['current_route'] ?? null)) {
+            $url = '/dist/js/plugin-MyTimesheetDataExport.js?' . http_build_query(['v' => '%%VERSION%%']);
             echo '<script src="' . htmlspecialchars($url) . '"></script>';
         }
     }

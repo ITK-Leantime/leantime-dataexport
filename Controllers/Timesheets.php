@@ -52,12 +52,16 @@ final class Timesheets extends Controller
         $id = $params['id'] ?? null;
         $format = $params['format'] ?? AbstractExporter::FORMAT_CSV;
 
-        if ('all' === $id) {
+        if ('all' === $id || 'my' === $id) {
+            // In "all" timesheets the dates are named dateFrom/dateTo and in "my timesheet the dates are named startDate/endDate
+            $fromDate = $params['dateFrom'] ?? $params['startDate'];
+            $toDate = $params['dateTo'] ?? $params['endDate'];
+
             $filename = 'leantime_timesheets';
-            if ($date = $this->timesheetsExporter->getDateTime($params['dateFrom'] ?? null)) {
+            if ($date = $this->timesheetsExporter->getDateTime($fromDate ?? null)) {
                 $filename .= '_' . $date->format(\DateTimeInterface::ATOM);
             }
-            if ($date = $this->timesheetsExporter->getDateTime($params['dateTo'] ?? null)) {
+            if ($date = $this->timesheetsExporter->getDateTime($toDate ?? null)) {
                 $filename .= '_' . $date->format(\DateTimeInterface::ATOM);
             }
             $filename .= '.' . $format;
