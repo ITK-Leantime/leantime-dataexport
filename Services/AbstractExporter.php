@@ -76,7 +76,8 @@ abstract class AbstractExporter
         if (null !== $value) {
             if ($format = ($_SESSION['usersettings.language.date_format'] ?? null)) {
                 // See https://www.php.net/manual/en/datetimeimmutable.createfromformat.php for details on `!`.
-                return Carbon::createFromFormat('!' . $format, $value)->setTimezone('UTC') ?: new Carbon($default);
+                $returnDate = Carbon::createFromFormat('!' . $format, $value) ?: new Carbon($default);
+                return $returnDate->setTimezone('UTC');
             }
         }
 
