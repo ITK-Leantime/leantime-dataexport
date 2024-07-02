@@ -5,6 +5,7 @@ namespace Leantime\Plugins\DataExport\Services;
 use Carbon\Carbon;
 use Leantime\Domain\Setting\Services\Setting;
 use Leantime\Domain\Timesheets\Repositories\Timesheets;
+use Leantime\Core\Support\DateTimeHelper;
 
 /**
  * Timesheets exporter.
@@ -16,9 +17,9 @@ final class TimesheetsExporter extends AbstractExporter
      */
     public function __construct(
         private readonly Timesheets $timesheets,
-        Setting $setting
+        DateTimeHelper $dateTimeHelper
     ) {
-        parent::__construct($setting);
+        parent::__construct($dateTimeHelper);
     }
 
     /**

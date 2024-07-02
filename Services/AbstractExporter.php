@@ -5,8 +5,8 @@ namespace Leantime\Plugins\DataExport\Services;
 require_once __DIR__ . '/../vendor/autoload.php';
 
 use Carbon\CarbonImmutable;
-use Leantime\Domain\Setting\Services\Setting;
 use OpenSpout\Common\Entity\Row;
+use Leantime\Core\Support\DateTimeHelper;
 use OpenSpout\Writer\AbstractWriter;
 use OpenSpout\Writer\CSV\Writer as CSVWriter;
 use OpenSpout\Writer\XLSX\Writer as XLSXWriter;
@@ -23,7 +23,7 @@ abstract class AbstractExporter
      * Constructor.
      */
     public function __construct(
-        protected readonly Setting $setting
+        protected readonly DateTimeHelper $dateTimeHelper
     ) {
     }
 
@@ -77,7 +77,8 @@ abstract class AbstractExporter
             if ($format = ($_SESSION['usersettings.language.date_format'] ?? null)) {
                 // See https://www.php.net/manual/en/datetimeimmutable.createfromformat.php for details on `!`.
                 $returnDate = CarbonImmutable::createFromFormat('!' . $format, $value) ?: new CarbonImmutable($default);
-                return dtHelper()->parseUserDateTime($value)->setToDbTimezone();
+                /* @phpstan-ignore-next-line */
+                return $this->dateTimeHelper->parseUserDateTime($value)->setToDbTimezone();
             }
         }
 
