@@ -73,16 +73,9 @@ abstract class AbstractExporter
      */
     public function getDateTime(string $value = null, string $default = null): ?CarbonImmutable
     {
-        if (null !== $value) {
-            if ($format = ($_SESSION['usersettings.language.date_format'] ?? null)) {
-                // See https://www.php.net/manual/en/datetimeimmutable.createfromformat.php for details on `!`.
-                $returnDate = CarbonImmutable::createFromFormat('!' . $format, $value) ?: new CarbonImmutable($default);
-                /* @phpstan-ignore-next-line */
-                return $this->dateTimeHelper->parseUserDateTime($value)->setToDbTimezone();
-            }
-        }
+        $value ??= $default;
 
-        return new CarbonImmutable($default);
+        return null !== $value ? $this->dateTimeHelper->parseUserDateTime($value)->setToDbTimezone() : null;
     }
 
     /**
