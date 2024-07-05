@@ -18,6 +18,7 @@ abstract class AbstractExporter
 {
     const FORMAT_CSV = 'csv';
     const FORMAT_XLSX = 'xlsx';
+    const FORMAT_HEJ = 'hej';
 
     /**
      * Constructor.
