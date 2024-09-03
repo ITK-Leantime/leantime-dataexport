@@ -2,7 +2,7 @@ composer.lock
 vendor
 node_modules
 dist
-
+.DS_Store
 *.cache
 
 # Release
