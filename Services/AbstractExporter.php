@@ -75,7 +75,7 @@ abstract class AbstractExporter
     {
         $value ??= $default;
 
-        return null !== $value ? $this->dateTimeHelper->parseUserDateTime($value)->setToDbTimezone() : null;
+        return null !== $value ? $this->dateTimeHelper->parseUserDateTime($value)->setToDbTimezone() : null; // @phpstan-ignore-line
     }
 
     /**
