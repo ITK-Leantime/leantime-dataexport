@@ -8,7 +8,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 * [PR-17](https://github.com/ITK-Leantime/leantime-dataexport/pull/17)
-  Update to comply with leantime 3.2.0
+  Update import paths to comply with leantime 3.2.0
+  Update from php8.1 -> php8.3
+  Update leantime dependency
+  Commit composer.lock
 * [PR-15](https://github.com/ITK-Leantime/leantime-dataexport/pull/15)
   Set timezone on returned values from getDateTime to utc
 * [PR-14](https://github.com/ITK-Leantime/leantime-dataexport/pull/14)
