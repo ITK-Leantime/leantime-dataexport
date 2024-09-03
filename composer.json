@@ -43,7 +43,8 @@
         "allow-plugins": {
             "dealerdirect/phpcodesniffer-composer-installer": true,
             "ergebnis/composer-normalize": true,
-            "metasyntactical/composer-plugin-license-check": true
+            "metasyntactical/composer-plugin-license-check": true,
+            "php-http/discovery": true
         }
     },
     "scripts": {
