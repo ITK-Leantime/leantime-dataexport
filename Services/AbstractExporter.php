@@ -75,7 +75,7 @@ abstract class AbstractExporter
     {
         $value ??= $default;
 
-        return null !== $value ? $this->dateTimeHelper->parseUserDateTime($value)->setToDbTimezone() : null; // @phpstan-ignore-line
+        return null !== $value ? $this->dateTimeHelper->parseUserDateTime($value)->setToDbTimezone() : null; // @phpstan-ignore method.notFound (After Laravel upgrade it cannot find methods that exist)
     }
 
     /**
