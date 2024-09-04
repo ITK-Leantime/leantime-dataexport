@@ -4,9 +4,8 @@ Data export plugin for Leantime
 
 ## Installation
 
-Download a release from
-<https://github.com/ITK-Leantime/leantime-dataexport/releases> and extract into
-your Leantime plugins folder, e.g.
+Download a release from <https://github.com/ITK-Leantime/leantime-dataexport/releases> and extract into your Leantime
+plugins folder, e.g.
 
 ``` shell
 curl --silent --location https://github.com/ITK-Leantime/leantime-dataexport/releases/download/0.0.2/leantime-dataexport-0.0.2.tar.gz | tar xv
@@ -26,8 +25,7 @@ exports:
 
 ![Export buttons](docs/images/export-buttons.png)
 
-**Note**: Go to Settings (`/users/editOwn#settings`) and save to refresh
-plugin translations.
+**Note**: Go to Settings (`/users/editOwn#settings`) and save to refresh plugin translations.
 
 ## Development
 
@@ -94,7 +92,8 @@ docker compose build && docker compose run --rm php bash bin/create-release dev-
 ```
 
 The create-release script replaces `@@VERSION@@` in
-[register.php](https://github.com/ITK-Leantime/leantime-dataexport/blob/f7c3992f78270c03b6fc84dbc9b1bbd6e48e53d6/register.php#L9) and
+[register.php](https://github.com/ITK-Leantime/leantime-dataexport/blob/f7c3992f78270c03b6fc84dbc9b1bbd6e48e53d6/register.php#L9)
+and
 [Services/DataExport.php](https://github.com/ITK-Leantime/leantime-dataexport/blob/f7c3992f78270c03b6fc84dbc9b1bbd6e48e53d6/Services/DataExport.php#L15)
 with the tag provided (in the above it is `dev-test`).
 
