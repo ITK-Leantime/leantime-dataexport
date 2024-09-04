@@ -9,6 +9,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
 
       - name: Git fetch
         run: git fetch
@@ -83,3 +85,18 @@ jobs:
       - run: |
           docker run --user root --rm --volume ${PWD}:/app itkdev/php8.3-fpm:latest composer install
           docker run --user root --rm --volume ${PWD}:/app itkdev/php8.3-fpm:latest composer code-analysis/phpstan
+
+  shellcheck:
+    runs-on: ubuntu-latest
+    name: Shellcheck
+    strategy:
+      fail-fast: false
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Shellcheck
+        run: |
+          docker run --rm --tty --volume "$PWD:/app" --workdir /app peterdavehello/shellcheck shellcheck bin/create-release
+          docker run --rm --tty --volume "$PWD:/app" --workdir /app peterdavehello/shellcheck shellcheck bin/deploy
+
