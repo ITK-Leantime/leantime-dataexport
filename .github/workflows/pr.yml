@@ -27,7 +27,7 @@ jobs:
 
       - name: Create test release
         run: |
-          ./bin/create-release dev-test
+          docker run --user root --rm --volume ${PWD}:/app itkdev/php8.3-fpm:latest ./bin/create-release dev-test
 
   assets-coding-standards:
     name: Assets coding standards
