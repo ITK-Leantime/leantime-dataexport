@@ -21,7 +21,5 @@ services:
       - DOCKER_HOST_DOMAIN=${COMPOSE_DOMAIN}
       - COMPOSER_VERSION=2
       - PHP_IDE_CONFIG=serverName=localhost
-    depends_on:
-      - mariadb
     volumes:
       - .:/app
