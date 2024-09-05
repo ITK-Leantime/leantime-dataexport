@@ -81,10 +81,10 @@ docker compose run --rm php npm run coding-standards-apply
 ### Code analysis
 
 ```shell name=dev-install
-docker compose run --interactive --rm --volume ${PWD}:/app itkdev/php8.3-fpm:latest composer install
+docker compose run --interactive --rm --volume ${PWD}:/app phpfpm composer install
 ```
 ```shell name=code-analysis
-docker compose run --interactive --rm --volume ${PWD}:/app itkdev/php8.3-fpm:latest composer code-analysis
+docker compose run --interactive --rm --volume ${PWD}:/app phpfpm composer code-analysis
 ```
 
 ## Test release build
