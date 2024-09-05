@@ -80,16 +80,16 @@ docker compose run --rm php npm run coding-standards-apply
 
 ### Code analysis
 
-``` shell name=dev-install
-docker compose run --user root --rm itkdev/php8.3-fpm:latest composer install 
+```shell name=dev-install
+docker compose run --interactive --rm --volume ${PWD}:/app itkdev/php8.3-fpm:latest composer install
 ```
-``` shell name=code-analysis
-docker compose run --user root --rm itkdev/php8.3-fpm:latest composer code-analysis
+```shell name=code-analysis
+docker compose run --interactive --rm --volume ${PWD}:/app itkdev/php8.3-fpm:latest composer code-analysis
 ```
 
 ## Test release build
 
-``` shell
+```
 docker compose build && docker compose run --rm php bash bin/create-release dev-test
 ```
 
