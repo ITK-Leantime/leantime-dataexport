@@ -1,8 +1,6 @@
-composer.lock
 vendor
 node_modules
 dist
-
 *.cache
 
 # Release

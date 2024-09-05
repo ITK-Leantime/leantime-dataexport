@@ -41,7 +41,7 @@ Install plugin dependencies:
 
 ``` shell
 cd app/Plugins/DataExport
-docker run --tty --interactive --rm --volume ${PWD}:/app itkdev/php8.1-fpm:latest composer install --no-dev
+docker run --tty --interactive --rm --volume ${PWD}:/app itkdev/php8.3-fpm:latest composer install --no-dev
 ```
 
 Install and enable the plugin:
@@ -54,9 +54,9 @@ bin/leantime plugin:enable leantime/dataexport --no-interaction
 ### Coding standards
 
 ``` shell
-docker run --tty --interactive --rm --volume ${PWD}:/app itkdev/php8.1-fpm:latest composer install
-docker run --tty --interactive --rm --volume ${PWD}:/app itkdev/php8.1-fpm:latest composer coding-standards-apply
-docker run --tty --interactive --rm --volume ${PWD}:/app itkdev/php8.1-fpm:latest composer coding-standards-check
+docker run --tty --interactive --rm --volume ${PWD}:/app itkdev/php8.3-fpm:latest composer install
+docker run --tty --interactive --rm --volume ${PWD}:/app itkdev/php8.3-fpm:latest composer coding-standards-apply
+docker run --tty --interactive --rm --volume ${PWD}:/app itkdev/php8.3-fpm:latest composer coding-standards-check
 ```
 
 ```shell
@@ -72,8 +72,8 @@ docker run --rm --volume $PWD:/md peterdavehello/markdownlint markdownlint --ign
 ### Code analysis
 
 ```shell
-docker run --tty --interactive --rm --volume ${PWD}:/app itkdev/php8.1-fpm:latest composer install
-docker run --tty --interactive --rm --volume ${PWD}:/app itkdev/php8.1-fpm:latest composer code-analysis
+docker run --tty --interactive --rm --volume ${PWD}:/app itkdev/php8.3-fpm:latest composer install
+docker run --tty --interactive --rm --volume ${PWD}:/app itkdev/php8.3-fpm:latest composer code-analysis
 ```
 
 ## Release
@@ -82,5 +82,5 @@ We use GitHub Actions to build releases (cf. `.github/workflows/release.yaml`).
 To test building a release, run
 
 ```shell
-docker run --tty --interactive --rm --volume ${PWD}:/app itkdev/php8.1-fpm:latest bin/create-release dev-test
+docker run --tty --interactive --rm --volume ${PWD}:/app itkdev/php8.3-fpm:latest bin/create-release dev-test
 ```
