@@ -100,3 +100,24 @@ jobs:
           docker run --rm --tty --volume "$PWD:/app" --workdir /app peterdavehello/shellcheck shellcheck bin/create-release
           docker run --rm --tty --volume "$PWD:/app" --workdir /app peterdavehello/shellcheck shellcheck bin/deploy
 
+  run-code-blocks-from-readme:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+
+      # https://github.com/actions/setup-go
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '1.23.0'
+
+      # https://github.com/mikkelricky/markdown-code-runner
+      # We need to run as root in GitHub Actions, hence the `--substitutions` hack!
+      - run: |
+          go run github.com/mikkelricky/markdown-code-runner@latest run \
+            --verbose --echo '👉 ' \
+            --substitutions '"docker compose run ": "docker compose run --user root "' \
+            code-analysis
