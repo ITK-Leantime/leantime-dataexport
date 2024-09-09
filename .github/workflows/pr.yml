@@ -51,7 +51,7 @@ jobs:
           go run github.com/mikkelricky/markdown-code-runner@latest run \
             --verbose --echo '👉 ' \
             --substitutions '"docker compose run ": "docker compose run --user root "' \
-            dev-install code-analysis check-coding-standards
+            dev-install code-analysis check-coding-standards prettier-check
 
 
 

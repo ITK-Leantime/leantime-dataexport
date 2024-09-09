@@ -75,10 +75,10 @@ docker run --interactive --rm --volume ${PWD}:/app itkdev/php8.3-fpm:latest comp
 #### Check and apply with prettier
 
 ```shell name=prettier-check
-docker compose run --rm -v "$(pwd):/work" prettier --check assets
+docker run --rm -v "$(pwd):/work" tmknom/prettier:latest --check assets
 ```
 ```shell name=prettier-apply
-docker compose run --rm -v "$(pwd):/work" prettier --write assets
+docker run --rm -v "$(pwd):/work" tmknom/prettier:latest --write assets
 ```
 
 #### Check and apply markdownlint
