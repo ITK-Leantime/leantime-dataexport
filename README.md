@@ -87,7 +87,7 @@ docker run --rm -v "$(pwd):/work" tmknom/prettier:latest --write assets
 docker run --rm --volume $PWD:/md peterdavehello/markdownlint markdownlint --ignore vendor --ignore LICENSE.md '**/*.md'
 ```
 ```shell name=markdown-apply
-docker compose run --rm --volume $PWD:/md peterdavehello/markdownlint markdownlint --ignore vendor --ignore LICENSE.md '**/*.md' --fix
+docker run --rm --volume $PWD:/md peterdavehello/markdownlint markdownlint --ignore vendor --ignore LICENSE.md '**/*.md' --fix
 ```
 
 #### Check and apply shellcheck
@@ -100,16 +100,16 @@ docker compose run --rm --volume "$PWD:/app" --workdir /app peterdavehello/shell
 ### Code analysis
 
 ```shell name=dev-install
-docker compose run --interactive --rm --volume ${PWD}:/app phpfpm composer install
+docker run --interactive --rm --volume ${PWD}:/app itkdev/php8.3-fpm:latest composer install
 ```
 ```shell name=code-analysis
-docker compose run --interactive --rm --volume ${PWD}:/app phpfpm composer code-analysis
+docker run --interactive --rm --volume ${PWD}:/app itkdev/php8.3-fpm:latest composer code-analysis
 ```
 
 ## Test release build
 
 ```shell name=test-create-release
-docker compose build && docker compose run --rm phpfpm bin/create-release dev-test
+docker build && docker run --rm itkdev/php8.3-fpm:latest bin/create-release dev-test
 ```
 
 The create-release script replaces `@@VERSION@@` in
