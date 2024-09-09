@@ -39,7 +39,7 @@ Install plugin dependencies:
 
 ``` shell
 cd app/Plugins/DataExport
-docker run --interactive --rm --volume ${PWD}:/app phpfpm composer install --no-dev
+docker compose run --interactive --rm --volume ${PWD}:/app phpfpm composer install --no-dev
 ```
 
 Install and enable the plugin:
@@ -66,35 +66,35 @@ docker compose run --rm --volume ${PWD}:/app phpfpm composer normalize
 #### Check and apply with phpcs
 
 ```shell name=check-coding-standards
-docker run --interactive --rm --volume ${PWD}:/app phpfpm composer coding-standards-check
+docker compose run --interactive --rm --volume ${PWD}:/app phpfpm composer coding-standards-check
 ```
 ```shell name=apply-coding-standards
-docker run --interactive --rm --volume ${PWD}:/app phpfpm composer coding-standards-apply
+docker compose run --interactive --rm --volume ${PWD}:/app phpfpm composer coding-standards-apply
 ```
 
 #### Check and apply with prettier
 
 ```shell name=prettier-check
-docker run --rm -v "$(pwd):/work" tmknom/prettier --check assets
+docker compose run --rm -v "$(pwd):/work" tmknom/prettier --check assets
 ```
 ```shell name=prettier-apply
-docker run --rm -v "$(pwd):/work" tmknom/prettier --write assets
+docker compose run --rm -v "$(pwd):/work" tmknom/prettier --write assets
 ```
 
 #### Check and apply markdownlint
 
 ```shell name=markdown-check
-docker run --rm --volume $PWD:/md peterdavehello/markdownlint markdownlint --ignore vendor --ignore LICENSE.md '**/*.md'
+docker compose run --rm --volume $PWD:/md peterdavehello/markdownlint markdownlint --ignore vendor --ignore LICENSE.md '**/*.md'
 ```
 ```shell name=markdown-apply
-docker run --rm --volume $PWD:/md peterdavehello/markdownlint markdownlint --ignore vendor --ignore LICENSE.md '**/*.md' --fix
+docker compose run --rm --volume $PWD:/md peterdavehello/markdownlint markdownlint --ignore vendor --ignore LICENSE.md '**/*.md' --fix
 ```
 
 #### Check and apply shellcheck
 
 ```shell name=shell-check
-docker run --rm --volume "$PWD:/app" --workdir /app peterdavehello/shellcheck shellcheck bin/create-release
-docker run --rm --volume "$PWD:/app" --workdir /app peterdavehello/shellcheck shellcheck bin/deploy
+docker compose run --rm --volume "$PWD:/app" --workdir /app peterdavehello/shellcheck shellcheck bin/create-release
+docker compose run --rm --volume "$PWD:/app" --workdir /app peterdavehello/shellcheck shellcheck bin/deploy
 ```
 
 ### Code analysis
