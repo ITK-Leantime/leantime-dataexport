@@ -57,7 +57,7 @@ docker compose run --interactive --rm --volume ${PWD}:/app phpfpm composer insta
 
 ### Composer normalize
 
-``` name=composer-normalize
+```shell name=composer-normalize
 docker compose run --rm --volume ${PWD}:/app phpfpm composer normalize
 ```
 
