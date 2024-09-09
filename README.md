@@ -52,13 +52,13 @@ bin/leantime plugin:enable leantime/dataexport --no-interaction
 ### Install _before_ running coding standards
 
 ```shell name=dev-install
-docker compose run --interactive --rm --volume ${PWD}:/app phpfpm composer install
+docker run --interactive --rm --volume ${PWD}:/app  itkdev/php8.3-fpm:latest composer install
 ```
 
 ### Composer normalize
 
 ```shell name=composer-normalize
-docker compose run --rm --volume ${PWD}:/app phpfpm composer normalize
+docker run --rm --volume ${PWD}:/app  itkdev/php8.3-fpm:latest composer normalize
 ```
 
 ### Coding standards
@@ -96,8 +96,8 @@ docker run --rm --volume $PWD:/md peterdavehello/markdownlint markdownlint --ign
 #### Check and apply shellcheck
 
 ```shell name=shell-check
-docker compose run --rm --volume "$PWD:/app" --workdir /app peterdavehello/shellcheck shellcheck bin/create-release
-docker compose run --rm --volume "$PWD:/app" --workdir /app peterdavehello/shellcheck shellcheck bin/deploy
+docker run --rm --volume "$PWD:/app" --workdir /app peterdavehello/shellcheck shellcheck bin/create-release
+docker run --rm --volume "$PWD:/app" --workdir /app peterdavehello/shellcheck shellcheck bin/deploy
 ```
 
 ### Code analysis
