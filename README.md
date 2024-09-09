@@ -68,6 +68,7 @@ docker compose run --rm --volume ${PWD}:/app phpfpm composer normalize
 ```shell name=check-coding-standards
 docker run --interactive --rm --volume ${PWD}:/app itkdev/php8.3-fpm:latest composer coding-standards-check
 ```
+
 ```shell name=apply-coding-standards
 docker run --interactive --rm --volume ${PWD}:/app itkdev/php8.3-fpm:latest composer coding-standards-apply
 ```
@@ -77,6 +78,7 @@ docker run --interactive --rm --volume ${PWD}:/app itkdev/php8.3-fpm:latest comp
 ```shell name=prettier-check
 docker run --rm -v "$(pwd):/work" tmknom/prettier:latest --check assets
 ```
+
 ```shell name=prettier-apply
 docker run --rm -v "$(pwd):/work" tmknom/prettier:latest --write assets
 ```
@@ -86,6 +88,7 @@ docker run --rm -v "$(pwd):/work" tmknom/prettier:latest --write assets
 ```shell name=markdown-check
 docker run --rm --volume $PWD:/md peterdavehello/markdownlint markdownlint --ignore vendor --ignore LICENSE.md '**/*.md'
 ```
+
 ```shell name=markdown-apply
 docker run --rm --volume $PWD:/md peterdavehello/markdownlint markdownlint --ignore vendor --ignore LICENSE.md '**/*.md' --fix
 ```
@@ -102,6 +105,7 @@ docker compose run --rm --volume "$PWD:/app" --workdir /app peterdavehello/shell
 ```shell name=dev-install
 docker run --interactive --rm --volume ${PWD}:/app itkdev/php8.3-fpm:latest composer install
 ```
+
 ```shell name=code-analysis
 docker run --interactive --rm --volume ${PWD}:/app itkdev/php8.3-fpm:latest composer code-analysis
 ```
