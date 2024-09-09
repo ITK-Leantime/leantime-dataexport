@@ -51,14 +51,11 @@ bin/leantime plugin:enable leantime/dataexport --no-interaction
 
 ### Install _before_ running coding standards
 
-```shell name=dev-install
-docker run --interactive --rm --volume ${PWD}:/app  itkdev/php8.3-fpm:latest composer install
-```
-
 ### Composer normalize
 
 ```shell name=composer-normalize
-docker run --rm --volume ${PWD}:/app  itkdev/php8.3-fpm:latest composer normalize
+docker run --interactive --rm --volume ${PWD}:/app itkdev/php8.3-fpm:latest composer install
+docker run --rm --volume ${PWD}:/app itkdev/php8.3-fpm:latest composer normalize
 ```
 
 ### Coding standards
