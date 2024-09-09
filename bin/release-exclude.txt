@@ -6,7 +6,8 @@
 .markdownlint.jsonc
 .php-cs-fixer.dist.php
 .twig-cs-fixer.dist.php
-bin
+bin/deploy
+bin/release-exclude.txt
 checksum.txt
 compose.yaml
 composer.lock
