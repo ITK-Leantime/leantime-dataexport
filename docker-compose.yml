@@ -23,3 +23,10 @@ services:
       - PHP_IDE_CONFIG=serverName=localhost
     volumes:
       - .:/app
+
+  prettier:
+    image: tmknom/prettier:latest
+    networks:
+      - app
+    volumes:
+      - .:/app

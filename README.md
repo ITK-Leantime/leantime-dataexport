@@ -75,10 +75,10 @@ docker compose run --interactive --rm --volume ${PWD}:/app phpfpm composer codin
 #### Check and apply with prettier
 
 ```shell name=prettier-check
-docker compose run --rm -v "$(pwd):/work" tmknom/prettier --check assets
+docker compose run --rm -v "$(pwd):/work" prettier --check assets
 ```
 ```shell name=prettier-apply
-docker compose run --rm -v "$(pwd):/work" tmknom/prettier --write assets
+docker compose run --rm -v "$(pwd):/work" prettier --write assets
 ```
 
 #### Check and apply markdownlint
