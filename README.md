@@ -90,7 +90,7 @@ docker run --rm --volume $PWD:/md peterdavehello/markdownlint markdownlint --ign
 docker run --rm --volume $PWD:/md peterdavehello/markdownlint markdownlint --ignore vendor --ignore LICENSE.md '**/*.md' --fix
 ```
 
-#### Check and apply shellcheck
+#### Check with shellcheck
 
 ```shell name=shell-check
 docker run --rm --volume "$PWD:/app" --workdir /app peterdavehello/shellcheck shellcheck bin/create-release
@@ -98,9 +98,6 @@ docker run --rm --volume "$PWD:/app" --workdir /app peterdavehello/shellcheck sh
 ```
 
 ### Code analysis
-
-```shell name=dev-install
-```
 
 ```shell name=code-analysis
 docker run --interactive --rm --volume ${PWD}:/app itkdev/php8.3-fpm:latest composer install
@@ -110,7 +107,7 @@ docker run --interactive --rm --volume ${PWD}:/app itkdev/php8.3-fpm:latest comp
 ## Test release build
 
 ```shell name=test-create-release
-docker build && docker run --rm itkdev/php8.3-fpm:latest bin/create-release dev-test
+docker compose build && docker compose run --rm php bin/create-release dev-test
 ```
 
 The create-release script replaces `@@VERSION@@` in
