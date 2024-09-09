@@ -39,7 +39,7 @@ Install plugin dependencies:
 
 ``` shell
 cd app/Plugins/DataExport
-docker run --tty --interactive --rm --volume ${PWD}:/app itkdev/php8.3-fpm:latest composer install --no-dev
+docker run --tty --interactive --rm --volume ${PWD}:/app phpfpm composer install --no-dev
 ```
 
 Install and enable the plugin:
@@ -49,33 +49,52 @@ bin/leantime plugin:install leantime/dataexport --no-interaction
 bin/leantime plugin:enable leantime/dataexport --no-interaction
 ```
 
+### Install _before_ running coding standards
+
+```shell name=dev-install
+docker compose run --interactive --rm --volume ${PWD}:/app phpfpm composer install
+```
+
+### Composer normalize
+
+``` name=composer-normalize
+docker compose run --rm --volume ${PWD}:/app phpfpm composer normalize
+```
+
 ### Coding standards
 
-``` shell
-docker run --tty --interactive --rm --volume ${PWD}:/app itkdev/php8.3-fpm:latest composer install
-docker run --tty --interactive --rm --volume ${PWD}:/app itkdev/php8.3-fpm:latest composer coding-standards-apply
-docker run --tty --interactive --rm --volume ${PWD}:/app itkdev/php8.3-fpm:latest composer coding-standards-check
+#### Check and apply with phpcs
+
+```shell name=check-coding-standards
+docker run --tty --interactive --rm --volume ${PWD}:/app phpfpm composer coding-standards-check
+```
+```shell name=apply-coding-standards
+docker run --tty --interactive --rm --volume ${PWD}:/app phpfpm composer coding-standards-apply
 ```
 
-```shell
-docker run --rm -v "$(pwd):/work" tmknom/prettier --write assets
+#### Check and apply with prettier
+
+```shell name=prettier-check
 docker run --rm -v "$(pwd):/work" tmknom/prettier --check assets
 ```
+```shell name=prettier-apply
+docker run --rm -v "$(pwd):/work" tmknom/prettier --write assets
+```
 
-```shell
-docker run --rm --volume $PWD:/md peterdavehello/markdownlint markdownlint --ignore vendor --ignore LICENSE.md '**/*.md' --fix
+#### Check and apply markdownlint
+
+```shell name=markdown-check
 docker run --rm --volume $PWD:/md peterdavehello/markdownlint markdownlint --ignore vendor --ignore LICENSE.md '**/*.md'
 ```
-
-```shell
-docker run --rm --tty --volume "$PWD:/app" --workdir /app peterdavehello/shellcheck shellcheck bin/create-release
-docker run --rm --tty --volume "$PWD:/app" --workdir /app peterdavehello/shellcheck shellcheck bin/deploy
+```shell name=markdown-apply
+docker run --rm --volume $PWD:/md peterdavehello/markdownlint markdownlint --ignore vendor --ignore LICENSE.md '**/*.md' --fix
 ```
 
-```shell
-docker compose build
-docker compose run --rm php npm install
-docker compose run --rm php npm run coding-standards-apply
+#### Check and apply shellcheck
+
+```shell name=shell-check
+docker run --rm --tty --volume "$PWD:/app" --workdir /app peterdavehello/shellcheck shellcheck bin/create-release
+docker run --rm --tty --volume "$PWD:/app" --workdir /app peterdavehello/shellcheck shellcheck bin/deploy
 ```
 
 ### Code analysis
@@ -89,8 +108,8 @@ docker compose run --interactive --rm --volume ${PWD}:/app phpfpm composer code-
 
 ## Test release build
 
-```
-docker compose build && docker compose run --rm php bash bin/create-release dev-test
+``` name=test-create-release
+docker compose build && docker compose run --rm phpfpm bin/create-release dev-test
 ```
 
 The create-release script replaces `@@VERSION@@` in

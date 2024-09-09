@@ -31,75 +31,6 @@ jobs:
         run: |
           docker compose build && docker run --user root --rm --volume ${PWD}:/app itkdev/php8.3-fpm:latest ./bin/create-release dev-test
 
-  assets-coding-standards:
-    name: Assets coding standards
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Coding standards
-        run: |
-          docker run --rm -v "$(pwd):/work" tmknom/prettier --check assets
-
-  markdown-coding-standards:
-    name: Markdown coding standards
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Coding standards
-        run: |
-          docker run --rm --volume $PWD:/md peterdavehello/markdownlint markdownlint --ignore vendor --ignore LICENSE.md '**/*.md'
-
-  composer-normalize:
-    name: composer-normalize
-    runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-    steps:
-      - uses: actions/checkout@master
-      - run: |
-          docker run --user root --rm --volume ${PWD}:/app itkdev/php8.3-fpm:latest composer install
-          docker run --user root --rm --volume ${PWD}:/app itkdev/php8.3-fpm:latest composer normalize
-
-  coding-standards-phpcs:
-    name: coding-standards-check/phpcs
-    runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-    steps:
-      - uses: actions/checkout@master
-      - run: |
-          docker run --user root --rm --volume ${PWD}:/app itkdev/php8.3-fpm:latest composer install
-          docker run --user root --rm --volume ${PWD}:/app itkdev/php8.3-fpm:latest composer coding-standards-check/phpcs
-
-  code-analysis-phpstan:
-    name: code-analysis/phpstan
-    runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-    steps:
-      - uses: actions/checkout@master
-      - run: |
-          docker run --user root --rm --volume ${PWD}:/app itkdev/php8.3-fpm:latest composer install
-          docker run --user root --rm --volume ${PWD}:/app itkdev/php8.3-fpm:latest composer code-analysis/phpstan
-
-  shellcheck:
-    runs-on: ubuntu-latest
-    name: Shellcheck
-    strategy:
-      fail-fast: false
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Shellcheck
-        run: |
-          docker run --rm --tty --volume "$PWD:/app" --workdir /app peterdavehello/shellcheck shellcheck bin/create-release
-          docker run --rm --tty --volume "$PWD:/app" --workdir /app peterdavehello/shellcheck shellcheck bin/deploy
-
   run-code-blocks-from-readme:
     runs-on: ubuntu-latest
     steps:
@@ -120,4 +51,4 @@ jobs:
           go run github.com/mikkelricky/markdown-code-runner@latest run \
             --verbose --echo '👉 ' \
             --substitutions '"docker compose run ": "docker compose run --user root "' \
-            dev-install code-analysis
+            dev-install code-analysis check-coding-standards prettier-check markdown-check shell-check composer-normalize
