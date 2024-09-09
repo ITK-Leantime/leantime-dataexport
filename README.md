@@ -66,10 +66,10 @@ docker compose run --rm --volume ${PWD}:/app phpfpm composer normalize
 #### Check and apply with phpcs
 
 ```shell name=check-coding-standards
-docker compose run --interactive --rm --volume ${PWD}:/app phpfpm composer coding-standards-check
+docker run --interactive --rm --volume ${PWD}:/app itkdev/php8.3-fpm:latest composer coding-standards-check
 ```
 ```shell name=apply-coding-standards
-docker compose run --interactive --rm --volume ${PWD}:/app phpfpm composer coding-standards-apply
+docker run --interactive --rm --volume ${PWD}:/app itkdev/php8.3-fpm:latest composer coding-standards-apply
 ```
 
 #### Check and apply with prettier
@@ -84,7 +84,7 @@ docker compose run --rm -v "$(pwd):/work" prettier --write assets
 #### Check and apply markdownlint
 
 ```shell name=markdown-check
-docker compose run --rm --volume $PWD:/md peterdavehello/markdownlint markdownlint --ignore vendor --ignore LICENSE.md '**/*.md'
+docker run --rm --volume $PWD:/md peterdavehello/markdownlint markdownlint --ignore vendor --ignore LICENSE.md '**/*.md'
 ```
 ```shell name=markdown-apply
 docker compose run --rm --volume $PWD:/md peterdavehello/markdownlint markdownlint --ignore vendor --ignore LICENSE.md '**/*.md' --fix
