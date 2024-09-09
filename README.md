@@ -108,7 +108,7 @@ docker compose run --interactive --rm --volume ${PWD}:/app phpfpm composer code-
 
 ## Test release build
 
-``` name=test-create-release
+```shell name=test-create-release
 docker compose build && docker compose run --rm phpfpm bin/create-release dev-test
 ```
 
