@@ -39,7 +39,7 @@ Install plugin dependencies:
 
 ``` shell
 cd app/Plugins/DataExport
-docker run --tty --interactive --rm --volume ${PWD}:/app phpfpm composer install --no-dev
+docker run --interactive --rm --volume ${PWD}:/app phpfpm composer install --no-dev
 ```
 
 Install and enable the plugin:
@@ -66,10 +66,10 @@ docker compose run --rm --volume ${PWD}:/app phpfpm composer normalize
 #### Check and apply with phpcs
 
 ```shell name=check-coding-standards
-docker run --tty --interactive --rm --volume ${PWD}:/app phpfpm composer coding-standards-check
+docker run --interactive --rm --volume ${PWD}:/app phpfpm composer coding-standards-check
 ```
 ```shell name=apply-coding-standards
-docker run --tty --interactive --rm --volume ${PWD}:/app phpfpm composer coding-standards-apply
+docker run --interactive --rm --volume ${PWD}:/app phpfpm composer coding-standards-apply
 ```
 
 #### Check and apply with prettier
@@ -93,8 +93,8 @@ docker run --rm --volume $PWD:/md peterdavehello/markdownlint markdownlint --ign
 #### Check and apply shellcheck
 
 ```shell name=shell-check
-docker run --rm --tty --volume "$PWD:/app" --workdir /app peterdavehello/shellcheck shellcheck bin/create-release
-docker run --rm --tty --volume "$PWD:/app" --workdir /app peterdavehello/shellcheck shellcheck bin/deploy
+docker run --rm --volume "$PWD:/app" --workdir /app peterdavehello/shellcheck shellcheck bin/create-release
+docker run --rm --volume "$PWD:/app" --workdir /app peterdavehello/shellcheck shellcheck bin/deploy
 ```
 
 ### Code analysis
