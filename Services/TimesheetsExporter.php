@@ -46,6 +46,10 @@ final class TimesheetsExporter extends AbstractExporter
             $row['fullname'] = $row['firstname'] . ' ' . $row['lastname'];
         }
 
+        foreach ($data as &$row) {
+            $row['workDate'] =  format($row['workDate'])->date();
+        }
+
         return $data;
     }
 }
