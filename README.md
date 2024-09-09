@@ -103,10 +103,10 @@ docker run --rm --volume "$PWD:/app" --workdir /app peterdavehello/shellcheck sh
 ### Code analysis
 
 ```shell name=dev-install
-docker run --interactive --rm --volume ${PWD}:/app itkdev/php8.3-fpm:latest composer install
 ```
 
 ```shell name=code-analysis
+docker run --interactive --rm --volume ${PWD}:/app itkdev/php8.3-fpm:latest composer install
 docker run --interactive --rm --volume ${PWD}:/app itkdev/php8.3-fpm:latest composer code-analysis
 ```
 
