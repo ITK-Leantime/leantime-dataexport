@@ -48,7 +48,6 @@ final class Timesheets extends Controller
     {
         // Cf. \Leantime\Domain\Timesheets\Controllers\ShowAll::run();
         Auth::authOrRedirect([Roles::$owner, Roles::$admin, Roles::$manager], true);
-
         $id = $params['id'] ?? null;
         $format = $params['format'] ?? AbstractExporter::FORMAT_CSV;
 
@@ -56,14 +55,22 @@ final class Timesheets extends Controller
             // In "all" timesheets the dates are named dateFrom/dateTo and in "my timesheet the dates are named startDate/endDate
             $fromDate = $params['dateFrom'] ?? $params['startDate'];
             $toDate = $params['dateTo'] ?? $params['endDate'];
-
             $filename = 'leantime_timesheets';
+
             if ($date = $this->timesheetsExporter->getDateTime($fromDate ?? null)) {
                 $filename .= '_' . $date->format(\DateTimeInterface::ATOM);
             }
+
             if ($date = $this->timesheetsExporter->getDateTime($toDate ?? null)) {
                 $filename .= '_' . $date->format(\DateTimeInterface::ATOM);
             }
+
+            if ('my' === $id) {
+                // The "all" timesheets gets the userId from submitting the get request, the
+                // "My timesheets" export needs to get the user id from the session object.
+                $params['userId'] = session('userdata.id');
+            }
+
             $filename .= '.' . $format;
             $this->timesheetsExporter->export(
                 $params,
