@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+set -o errexit -o errtrace -o noclobber -o nounset -o pipefail
+
+export plugin_name=DataExport
+export plugin_repo_url=https://github.com/ITK-Leantime/leantime-dataexport
+
+buildRelease() {
+  composer install --no-dev --classmap-authoritative
+  return
+}
+
+export -f buildRelease

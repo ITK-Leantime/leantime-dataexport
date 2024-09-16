@@ -49,12 +49,15 @@ bin/leantime plugin:install leantime/dataexport --no-interaction
 bin/leantime plugin:enable leantime/dataexport --no-interaction
 ```
 
-### Install _before_ running coding standards
+Run composer install
+
+```shell name=development-install
+docker run --interactive --rm --volume ${PWD}:/app itkdev/php8.3-fpm:latest composer install
+```
 
 ### Composer normalize
 
 ```shell name=composer-normalize
-docker run --interactive --rm --volume ${PWD}:/app itkdev/php8.3-fpm:latest composer install
 docker run --rm --volume ${PWD}:/app itkdev/php8.3-fpm:latest composer normalize
 ```
 
@@ -95,13 +98,19 @@ docker run --rm --volume $PWD:/md peterdavehello/markdownlint markdownlint --ign
 ```shell name=shell-check
 docker run --rm --volume "$PWD:/app" --workdir /app peterdavehello/shellcheck shellcheck bin/create-release
 docker run --rm --volume "$PWD:/app" --workdir /app peterdavehello/shellcheck shellcheck bin/deploy
+docker run --rm --volume "$PWD:/app" --workdir /app peterdavehello/shellcheck shellcheck bin/local.create-release
 ```
 
 ### Code analysis
 
 ```shell name=code-analysis
-docker run --interactive --rm --volume ${PWD}:/app itkdev/php8.3-fpm:latest composer install
 docker run --interactive --rm --volume ${PWD}:/app itkdev/php8.3-fpm:latest composer code-analysis
+```
+
+## Test release build
+
+```shell name=test-create-release
+docker compose build && docker compose run --rm php bin/create-release dev-test
 ```
 
 ## Test release build

@@ -9,8 +9,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 2
 
       - name: Git fetch
         run: git fetch
@@ -38,6 +36,16 @@ jobs:
 
   run-code-blocks-from-readme:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        blocks:
+          - development-install markdown-check
+          - development-install composer-normalize
+          - development-install check-coding-standards
+          - development-install prettier-check
+          - development-install shell-check
+          - development-install code-analysis
+          - development-install test-create-release
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
@@ -55,5 +63,5 @@ jobs:
       - run: |
           go run github.com/mikkelricky/markdown-code-runner@latest run \
             --verbose --echo '👉 ' \
-            --substitutions '"docker run ": "docker run --user root "' \
-            code-analysis check-coding-standards prettier-check markdown-check shell-check composer-normalize test-create-release
+            --substitutions '{"docker run ": "docker run --user root ", "docker compose run ": "docker compose run --user root "}' \
+            ${{ matrix.blocks }}
