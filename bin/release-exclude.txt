@@ -1,0 +1,17 @@
+
+*.tar.gz
+.DS_Store
+.editorconfig
+.git*
+.markdownlint.jsonc
+.php-cs-fixer.dist.php
+.twig-cs-fixer.dist.php
+bin/deploy
+bin/release-exclude.txt
+checksum.txt
+compose.yaml
+composer.lock
+node_modules
+package.json
+phpcs.xml
+phpstan.dist.neon

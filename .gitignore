@@ -1,8 +1,9 @@
 vendor
 node_modules
+composer.lock
 dist
 *.cache
 
 # Release
-leantime-plugin-*.tar.gz
+DataExport-*.tar.gz
 checksum.txt

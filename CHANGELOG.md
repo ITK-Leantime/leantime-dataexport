@@ -9,8 +9,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 * [PR-20](https://github.com/ITK-Leantime/leantime-dataexport/pull/20)
   Export only "my" timesheets under "my timesheets"
-* [PR-18](https://github.com/ITK-Leantime/leantime-dataexport/pull/19)
+* [PR-19](https://github.com/ITK-Leantime/leantime-dataexport/pull/19)
   "Format" date in exported data
+* [PR-18](https://github.com/ITK-Leantime/leantime-dataexport/pull/18)
+  Run GA with markdown runner
+  Add deploy script
+  Update create-release script
+  Add GA that checks if documentation has been updated
 * [PR-17](https://github.com/ITK-Leantime/leantime-dataexport/pull/17)
   Update import paths to comply with leantime 3.2.0
   Update from php8.1 -> php8.3
