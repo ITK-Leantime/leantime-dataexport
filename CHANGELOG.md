@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+* [PR-22](https://github.com/ITK-Leantime/leantime-dataexport/pull/22)
+  Add vendor modules to build
 * [PR-20](https://github.com/ITK-Leantime/leantime-dataexport/pull/20)
   Export only "my" timesheets under "my timesheets"
 * [PR-19](https://github.com/ITK-Leantime/leantime-dataexport/pull/19)
