@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.1.0] - 2024-09-17
+
 * [PR-22](https://github.com/ITK-Leantime/leantime-dataexport/pull/22)
   Add vendor modules to build
 * [PR-20](https://github.com/ITK-Leantime/leantime-dataexport/pull/20)
@@ -57,7 +59,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 * Added Leantime data export plugin
 
-[Unreleased]: https://github.com/itk-leantime/leantime-dataexport/compare/1.0.1...HEAD
+[Unreleased]: https://github.com/itk-leantime/leantime-dataexport/compare/1.1.0...HEAD
+[1.1.0]: https://github.com/itk-leantime/leantime-dataexport/compare/1.0.1...1.1.0
 [1.0.1]: https://github.com/itk-leantime/leantime-dataexport/compare/1.0.0...1.0.1
 [1.0.0]: https://github.com/itk-leantime/leantime-dataexport/compare/0.1.1...1.0.0
 [0.1.1]: https://github.com/ITK-Leantime/leantime-dataexport/releases/tag/0.1.1
