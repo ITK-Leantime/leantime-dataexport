@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+* [PR-24](https://github.com/ITK-Leantime/leantime-dataexport/pull/24)
+  update leantime in composer, remove repository
+
 ## [2.0.0] - 2024-09-18
 
 ## [1.1.0] - 2024-09-17
