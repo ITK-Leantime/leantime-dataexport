@@ -86,11 +86,11 @@ docker run --rm -v "$(pwd):/work" tmknom/prettier:latest --write assets
 #### Check and apply markdownlint
 
 ```shell name=markdown-check
-docker run --rm --volume $PWD:/md peterdavehello/markdownlint markdownlint --ignore vendor --ignore LICENSE.md '**/*.md'
+docker run --rm --volume "$PWD:/md" itkdev/markdownlint '**/*.md'
 ```
 
 ```shell name=markdown-apply
-docker run --rm --volume $PWD:/md peterdavehello/markdownlint markdownlint --ignore vendor --ignore LICENSE.md '**/*.md' --fix
+docker run --rm --volume "$PWD:/md" itkdev/markdownlint '**/*.md' --fix
 ```
 
 #### Check with shellcheck
@@ -104,7 +104,8 @@ docker run --rm --volume "$PWD:/app" --workdir /app peterdavehello/shellcheck sh
 ### Code analysis
 
 ```shell name=code-analysis
-docker run --interactive --rm --volume ${PWD}:/app itkdev/php8.3-fpm:latest composer code-analysis
+# This analysis takes a bit more than the default allocated ram.
+docker run --interactive --rm --volume ${PWD}:/app --env PHP_MEMORY_LIMIT=256M itkdev/php8.3-fpm:latest composer code-analysis
 ```
 
 ## Test release build
