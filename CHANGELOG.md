@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [3.0.0] - 2025-03-27
+
 * [PR-24](https://github.com/ITK-Leantime/leantime-dataexport/pull/24)
   update leantime in composer, remove repository
 
@@ -64,7 +66,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 * Added Leantime data export plugin
 
-[Unreleased]: https://github.com/itk-leantime/leantime-dataexport/compare/2.0.0...HEAD
+[Unreleased]: https://github.com/itk-leantime/leantime-dataexport/compare/3.0.0...HEAD
+[3.0.0]: https://github.com/itk-leantime/leantime-dataexport/compare/2.0.0...3.0.0
 [2.0.0]: https://github.com/itk-leantime/leantime-dataexport/compare/1.0.1...2.0.0
 [1.1.0]: https://github.com/itk-leantime/leantime-dataexport/compare/1.0.1...1.1.0
 [1.0.1]: https://github.com/itk-leantime/leantime-dataexport/compare/1.0.0...1.0.1
