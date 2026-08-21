@@ -5,6 +5,24 @@ export plugin_name=DataExport
 export plugin_repo_url=https://github.com/ITK-Leantime/leantime-dataexport
 
 buildRelease() {
+  # This plugin ships vendor/, so the release must resolve dependencies. That
+  # resolve also has to satisfy require-dev, which pulls leantime/leantime and
+  # with it Laravel advisories we neither ship nor control. Composer 2.10 blocks
+  # advisory-affected packages during resolution by default, so ignore those
+  # specific advisories here rather than in composer.json — keeping the block out
+  # of the published package and leaving blocking active for everything we do
+  # ship. `|| true` keeps this a no-op on Composer < 2.10, which has no policy
+  # config and no blocking to suppress.
+  local advisory
+  for advisory in \
+    PKSA-3r5d-mb8f-1qw9 \
+    PKSA-8qx3-n5y5-vvnd \
+    PKSA-m5cs-t1y6-qpcs \
+    PKSA-mdq4-51ck-6kdq; do
+    composer config --global "policy.advisories.ignore-id.${advisory}" \
+      "Laravel advisory inherited from the dev-only leantime/leantime requirement" || true
+  done
+
   composer install --no-dev --classmap-authoritative
   return
 }
