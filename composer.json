@@ -39,6 +39,16 @@
             "ergebnis/composer-normalize": true,
             "metasyntactical/composer-plugin-license-check": true,
             "php-http/discovery": true
+        },
+        "policy": {
+            "advisories": {
+                "ignore": {
+                    "laravel/framework": {
+                        "constraint": "^11",
+                        "reason": "laravel/framework is pinned to ^11.44 by the dev-only leantime/leantime requirement, so this plugin can neither upgrade it nor ship it. Blocking stays on for every other package."
+                    }
+                }
+            }
         }
     },
     "scripts": {
