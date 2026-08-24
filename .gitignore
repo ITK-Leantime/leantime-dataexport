@@ -4,6 +4,7 @@ composer.lock
 dist
 *.cache
 
-# Release
-DataExport-*.tar.gz
+# Release artifacts
+release/
 checksum.txt
+*.tar.gz
