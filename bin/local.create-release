@@ -5,6 +5,7 @@ export plugin_name=DataExport
 export plugin_repo_url=https://github.com/ITK-Leantime/leantime-dataexport
 
 buildRelease() {
+  # This plugin ships vendor/, so the release has to resolve dependencies.
   composer install --no-dev --classmap-authoritative
   return
 }
